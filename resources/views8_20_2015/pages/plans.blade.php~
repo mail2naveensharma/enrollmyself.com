@@ -1,0 +1,349 @@
+@extends('home')
+
+@section('content')
+
+<div class="planbody"/>
+     <div class="planbodywrapper"/>
+
+
+<!-----------------TAX CREDIT INFO SECTION----------- -->
+<div id="plan-meta">
+
+<input type="hidden" id="myself-zipcode" value="{{ $zipcode }}" />
+<input type="hidden" id="_token" value="{{ csrf_token() }}" />
+
+<div class="boxleft"/>
+<div class="boxone"/>
+  <div class="title" style="margin-left: 20px; padding-top: 5px; font-size: 20; px;color: #293bc0;"/>
+  <div class="number" style="color:white; position: absolute; margin-top: 2px; margin-left: 10px; font-size: 18px;"/> 1</div>
+  <img src="{{ URL::asset('img/blue-circle.png') }}" width="30"> 
+who is applying?
+</div>
+<center><font color="blue"><b><u>MYSELF</u></b></font></center>
+
+<div class="myself-data">
+    <div class="pull-left">
+    <p>AGE</p>
+    <input type="text" id="myself-age" />
+    </div>
+    <div class="pull-right">
+    <p>Tobacco?</p>
+    <input type="checkbox" id="myself-tabacco" />
+    </div>
+
+</div>
+
+
+</div>
+
+<div class="boxtwo"/>
+  <div class="family-data">
+      <h2>My Family</h2>
+      <div id="family-members">
+ <div class="family-member" >
+              Spouse Age <input type="text" size="3" class="age" /></select> Smoker? <input type="checkbox" class="tabacco" />
+            </div>
+            <br />
+            <center>Add Children Below only first 3 needed to calculate your tax credit and plann premium.</center>
+      </div>
+
+        <div id="family-member-row-template">
+            
+            <div class="family-member">
+              Child Age <input type="text" size="3" class="age" /></select> Smoker? <input type="checkbox" class="tabacco" />
+            </div>
+        </div>
+      <button id="family-data-add-button" class="btn btn-primary"><i class="icon icon-plus"></i> Add Child</button>
+  </div>
+
+</div>
+
+
+</div>     
+<div class="boxright"/>
+<div class="boxthree"/>
+  <div class="title" style="margin-left: 20px; padding-top: 5px; font-size: 20; px;color: #293bc0;"/>
+  <div class="number" style="color:white; position: absolute; margin-top: 2px; margin-left: 10px; font-size: 18px;"/> 2</div>
+  <img src="{{ URL::asset('img/blue-circle.png') }}" width="30"> 
+Yealy Household Income
+
+    <div class="income-data">
+    <div class="pull-left">
+    <p>Annual Income</p>
+    <input type="text" id="income-annual" />
+    </div>
+    <div class="pull-right">
+    <p>Household Size</p>
+    <input type="text" id="income-household" />
+    </div>
+    </div>
+
+</div>
+</div>
+<div class="boxfour"/>
+  <div class="title" style="margin-left: 20px; padding-top: 5px; font-size: 20; px;color: #293bc0;"/>
+  <div class="number" style="color:white; position: absolute; margin-top: 2px; margin-left: 10px; font-size: 18px;"/> 3</div>
+  <img src="{{ URL::asset('img/blue-circle.png') }}" width="30"> 
+How Much Is My Tax Credit?
+
+<div class="credit-data">
+    <h2 id="credit-result">Fill Out Your Information To Find Out!</h2>
+</div>
+
+</div>
+</div>
+</div> 
+
+</div> <!-- #plan-meta -->
+
+<div class="clear"/></div>
+
+<!-----------------SEARCH BOX SECTION----------- -->
+
+
+
+<div class="searchbox" />
+
+<div class="dropwrapper" />
+    <div class="searchboxwrapper" />
+
+<div class="dropwrapper"/>
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Lowest Price
+    <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">1st</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">2nd</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">3rd</a></li>
+      <li role="presentation" class="divider"></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Least Expese</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">ALL</a></li>
+    </ul>
+    </div>
+</div>
+
+<div class="dropwrapper"/>
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Carrier
+    <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">United</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Humana</a></li>
+      <li role="presentation" class="divider"></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">ALL</a></li>
+    </ul>
+    </div>
+</div>
+
+<div class="dropwrapper"/>
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Network
+    <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">HMO</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">PPO</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">EPO</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">POS</a></li>
+      <li role="presentation" class="divider"></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">ALL</a></li>
+    </ul>
+    </div>
+</div>
+
+<div class="dropwrapper"/>
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Metal Level
+    <span class="caret"></span></button>
+        <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Bronz</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Gold</a></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Silver</a></li>
+            <li role="presentation" class="divider"></li>
+      <li role="presentation"><a role="menuitem" tabindex="-1" href="#">ALL</a></li>
+    </ul>
+</div>
+    </div>
+    </div></div> 
+    <div class="moreplans" style="padding-top: 10px;  line-height: 15px;"/><center><h3 class="blue" style="line-height: 27px;">WANT MORE OPTIONS? <br /> (800)555-5555</h3> </center></div>
+    
+        
+            
+                </div>
+
+<div class="clear"/></div>
+
+
+
+
+<!-----------------PLAN OVERVIEW SECTION----------- -->
+
+
+
+<div class="plansbox"/>
+<div class="planwrapper"/>
+
+<div class="plantitle" style="float: left; width: 565px; height: 60px; border-bottom-style: solid; border-width: 2px; border-color: #555555;"/>
+
+
+<div style="padding-left: 20px; color: blue; font-size: 20px; font-weight: bold;">Blue Select Essential (HSA) 1452-EPO <br /></div>
+<div style="padding-left: 20px; color: red; font-size: 15px; font-weight: bold;">Florida Blue (Blue Cross Blue Shield FL) <br /></div>
+
+
+</div>
+<div class="enrollbtn" style="float: right; width: 250px; height: 200px; margin-top: 10px; margin-right: 20px; border-left-style: solid; border-width: 2px; border-color: #555555;"/>
+<center>
+<a href="#"/><img src="/img/Enrollbutton.png"/></a>
+<br />
+
+
+<b>Standard Premium</b> <br />
+<h3 class="blue">$700.00</h3> 
+
+<b>Tax Credit</b> <br />
+<h3 class="blue"><b style="color: black;">-</b>$350.00</h3> 
+
+<div class="ipay">
+<h3 class="black">I PAY</h3> <br />
+<h3 class="green">$350.00</h3>
+</div>
+</center>
+
+</div>
+
+
+
+<div class="planinfowrapper" style="float: left; width: 550px;height: 160px; "/>
+<div class="planforwrappertwo"/>
+
+<div class="deductible" style="margin-top: 5px; float: left; width: 200px; height: 150px; border-right-style: solid; border-width: 2px; border-color: #555555;"/>
+<center>
+<h2 class="black">Deductible</h2> <br />
+<h3 class="blue">$700.00</h3> 
+PerPerson <br />
+<h2 class="black">Mat Out Of Pocket</h2> <br />
+<h3 class="blue">$700.00</h3> 
+
+</center>
+
+
+</div>
+
+<div class="services" style="float: right; width: 350px; height: 150px;margin-top: 5px; font-size:  10px;"/>
+
+<div class="servicesleft" style="float: left; margin-left: 20px;"/>
+<h2 class="black">Services</h2> <br />
+Primary Care<br />
+Specialist<br />
+ER Visit<br />
+Hospital Stay<br />
+Hospital Stay<br />
+Brand RX<br />
+Specialy RX<br />
+</div>
+
+<div class="servicesright" style="float: right;"/>
+<h2 class="black">You Pay</h2> <br />
+No Charge After Deductible<br />
+No Charge After Deductible<br />
+No Charge After Deductible<br />
+No Charge After Deductible<br />
+No Charge After Deductible<br />
+No Charge After Deductible<br />
+No Charge After Deductible<br />
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+<div class="clear"/></div>
+
+
+<div class="planfooter" style="border-top-style: solid; border-width: 2px; border-color: #555555;"/>
+<center> 
+<a href="#"><b>Summary of benefits</b></a> &nbsp;&nbsp;&nbsp;
+<a href="#"><b>Doctor List</b></a> &nbsp;&nbsp;&nbsp;
+<a href="#"><b>Drug List</b></a> &nbsp;&nbsp;&nbsp;
+</center>
+
+</div>
+    </div>
+        </div>
+            </div>
+            
+               
+                </div>
+
+@stop
+
+@section('js')
+<script type="text/javascript">
+$(function() {
+
+  // Add currency mask to input field
+  $('#income-annual').maskMoney({
+    precision: 0,
+    allowZero: false,
+  });
+
+    $('#family-data-add-button').on('click', function(event) {
+        var copy = $('#family-member-row-template').find('.family-member').clone();
+        $('#family-members').append(copy);
+        if($('#family-members').find('.family-member').length >= 4) {
+          $(this).remove();
+        }
+        
+        
+    });
+
+
+
+
+$(document).on('change keyup', '#plan-meta input', function() {
+  $('#plan-meta').doTimeout('meta-submit', 1000, function() {
+    var data = {};
+    data._token = $('#_token').val();
+    data.myself = {
+      age: $('#myself-age').val(),
+      tabacco: $('#myself-tabacco').is(":checked")
+    };
+    data.household = {
+      income: $('#income-annual').val(),
+      size: $('#income-household').val()
+    };
+    data.family = [];
+    $('#family-members .family-member').each(function() {
+      if($(this).find('.age').val() == '') {
+      return true;
+      }
+      data.family[data.family.length] = {
+        age: $(this).find('.age').val(),
+        gender: $(this).find('.gender').val(),
+        tabacco: $(this).find('.tabacco').is(':checked')
+      };
+    });
+    $.post('/plans/calc', data, function(result) {
+      if(typeof result.credit != "Undefined") {
+        $('#credit-result').text(accounting.formatMoney(result.credit, '$', 0));
+      } else {
+        $('#credit-result').text('Fill Out Your Information To Find Out!');
+      }
+
+    }, "json");
+  });
+});
+
+
+
+});
+</script>
+@endsection

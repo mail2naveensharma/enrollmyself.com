@@ -1,0 +1,34 @@
+/*! normalize.css v3.0.2 | MIT License | gi
+ * 
+ *
+ * 
+ *
+ * 
+ *
+
+ 
+
+ 
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+body{
+    width: 1200px;
+    height: auto;
+    background-color: #d7dbf5;
+}
+
+.header {
+    width:  960px;
+    height: 500px;
+}
+
+

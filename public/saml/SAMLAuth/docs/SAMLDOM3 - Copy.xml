@@ -1,0 +1,50 @@
+<samlp:Response ID="_d645f885-b6b9-4712-ba57-0b3cab551fab" Version="2.0"
+    IssueInstant="2015-07-27T15:12:16.155Z" xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol">
+    <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">Modglin Inc</saml:Issuer>
+    <samlp:Status>
+        <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>
+        <samlp:StatusMessage>Success</samlp:StatusMessage>
+    </samlp:Status>
+    <saml:Assertion Version="2.0" 
+        IssueInstant="2015-07-27T15:12:16.141Z" xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">
+        <saml:Issuer Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
+            >Modglin Inc</saml:Issuer>
+        <saml:Subject>
+            <saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified"
+                >04.MAA.FL*.813.229</saml:NameID>
+            <saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:sender-vouches">
+                <saml:NameID>CN=Modglin Inc, OU=Modglin Inc, O=Modglin Inc, L=Holiday, ST=Florida, C=US</saml:NameID>
+            </saml:SubjectConfirmation>
+        </saml:Subject>
+        <saml:Conditions NotBefore="2015-07-26T14:12:16.141Z"
+            NotOnOrAfter="2015-07-29T16:12:16.141Z"/>
+        <saml:AttributeStatement>
+            <saml:Attribute Name="State Exchange Code"
+                NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+                <saml:AttributeValue>FL0</saml:AttributeValue>
+            </saml:Attribute>
+            <saml:Attribute Name="Partner Assigned Consumer ID"
+                NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+                <saml:AttributeValue>0001</saml:AttributeValue>
+            </saml:Attribute>
+            <saml:Attribute Name="User Type"
+                NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+                <saml:AttributeValue>Broker</saml:AttributeValue>
+            </saml:Attribute>
+            <saml:Attribute Name="Transfer Type"
+                NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+                <saml:AttributeValue>Direct Enrollment</saml:AttributeValue>
+            </saml:Attribute>
+            <saml:Attribute Name="Return URL"
+                NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+                <saml:AttributeValue>http://dev.enrollmyself.com/saml/response.php</saml:AttributeValue>
+            </saml:Attribute>
+        </saml:AttributeStatement>
+        <saml:AuthnStatement AuthnInstant="2015-07-27T15:12:16.141Z">
+            <saml:SubjectLocality Address=""/>
+            <saml:AuthnContext>
+                <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:Password</saml:AuthnContextClassRef>
+            </saml:AuthnContext>
+        </saml:AuthnStatement>
+    </saml:Assertion>
+</samlp:Response>

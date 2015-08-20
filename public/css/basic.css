@@ -1,0 +1,520 @@
+@charset "UTF-8";
+
+/* CSS Document */
+
+/* Site blocks */
+
+body {
+	width: 1200px;
+    height:  auto;
+    margin: auto;
+    background-color: #d7dbf5;
+}
+
+.clear {
+    clear: both;
+    }
+
+.header {
+	width: 960px;
+    height: 130px;
+    margin: auto;
+}
+             
+.container {
+    margin: auto;
+    width: 960px;
+    height:  auto;
+}
+
+.logo {
+    width: 400px; 
+    float: left;  
+}
+
+.menu {
+    width: 350px; 
+    float: left; 
+    clear:right; 
+    margin-top: 0px; 
+    margin-left: 130px;
+    color: #555555;
+    font-size: 12px;
+    font-family: 'Open Sans', sans-serif;
+}
+
+.dropdown {
+    margin-left: 30px; 
+    padding-top: 17px;
+}
+
+.dropwrapper {
+    float: left;
+    }
+    .dropwrappertop {
+    float: left;
+    margin-bottom: 20px;
+    }
+/*-----Zipcode page-----*/
+.county {
+     border: solid 0.3em;
+     clear: right;
+     height: 500px;
+     position: relative;
+     top: 0px;
+     width: 950px;
+     z-index: 100;
+     border-radius: 25px;
+     border: solid 0.3em;
+     border-color: grey;
+     background-image: url('../img/countybg.png');
+}
+.countycontainer {
+		width: 900px; 
+		height: 600px; 
+		margin-top: 100px; 
+		position: absolute;
+		margin-left: 20px;
+		padding-left: 30px;
+}
+
+.countypick {
+		margin-top: 10px; 
+		margin-left: 10px; 
+		padding-top: 30px;
+		width: 200px; 
+		height:100px; 
+		background-color: red; 
+		border-radius: 25px; 
+		border: solid 0.3em; 
+		opacity: none; 
+		font-size: 20px; 
+		float: left; 
+		padding-left: 10px
+}
+
+.enterzip{
+    width: 960px;
+    height: 700px;
+    background-image: url('../img/us-map.png');
+    background-repeat: no-repeat;
+}
+
+.enterzipwrapper {
+    padding-top: 50px;
+    width: 960px;
+    height: 500px;
+}
+
+.zipleft {
+    font-family: 'Oswald', sans-serif;
+   /* font-family: 'Open Sans', sans-serif; */
+    float: left; 
+    width: 280px;
+    margin-top: 50px;
+    height: 300px;
+    margin-right: 40px;
+    margin-left: 60px;
+    opacity: 0.4;
+    background-color: #ffeded;
+    font-size: 37px;
+    font-style: italic;
+    font-weight: bold;
+    border-radius: 25px;
+    border: 8px solid grey;
+    color: #000000;
+}
+
+
+.zipright {
+    float: left;
+    margin-left: 50px;
+    width: 500px;
+    height: 100px;
+    clear: right;
+}
+
+.round{
+    border-radius:25px;
+    -moz-border-radius:25px; /* Firefox 3.6 and earlier */
+    padding:10px;
+    background:white;
+    border: 2px dotted red;
+    font-size: 25px;
+}
+.textfield {
+    padding-top: 15px;
+    font-size: 20px;
+    text-decoration: none;
+    font-family: 'Open Sans', sans-serif;
+}
+
+/*-------------plan overview ---------------*/
+
+.sectitle {
+    color: blue; 
+    font-size: 25px;
+
+}
+
+h3.blue {
+    color: blue;
+    font-weight: bold; 
+    margin-top: 0px;   
+    margin-bottom: 0px;  
+    line-height: 1;
+}    
+
+h3.red {
+    color: red;   
+    font-weight: bold; 
+    margin-top: 0px;   
+    margin-bottom: 0px;  
+    line-height: 1;
+}   
+
+h2.blue {
+    color: blue;
+    font-weight: bold;   
+    font-size: 15px;
+    margin-top: -5px;   
+    margin-bottom: 0px;  
+    line-height: 1;
+}    
+
+h2.black {
+    font-weight: bold;   
+    font-size: 20px;
+    margin-top: 8px;   
+    margin-bottom: -10px;  
+    line-height: 1;
+}  
+
+h2.red {
+    color: red;   
+    font-weight: bold;
+    margin-top: 0px;   
+    margin-bottom: 0px;   
+    line-height: 1;
+}  
+
+h3.green {
+    color: green;   
+    font-weight: bold;
+    margin-top: -20px;   
+    margin-bottom: 0px; 
+    font-size: 30px;  
+    line-height: 1;
+}    
+
+h3.black { 
+    font-weight: bold;
+    margin-top: 0px;   
+    margin-bottom: 0px;   
+    line-height: 1;
+}   
+
+.ipay {
+    border-top-style: solid; 
+    border-width: 6px; 
+    border-color: #555555;   
+    margin-left: 10px;
+
+}    
+
+
+/*-----PLANS-----*/
+
+.planbody {
+    margin: auto;
+    width: 960px;
+    height: auto;    
+}
+
+
+
+
+.planbodywrapper {
+    margin: auto;
+    width: 960px;
+    height: auto;  
+    padding-top: 30px;
+    background-color: #555555;
+    padding-bottom: 50px;  
+    margin-bottom: 50px;
+    border-radius: 25px;
+}
+    
+.boxleft {
+    width: 420px;
+    height: auto;
+    float: left;  
+  	margin-left: 40px; 
+}   
+
+
+.boxright {
+    width:420px;
+    height: auto;
+    float: right;    
+    margin-right: 40px;
+    clear: right;    
+}  
+
+.boxone {
+    width: 400px;
+    height: 150px;
+    margin-top: 30px;
+    margin-left: 10px;
+    margin-bottom: -20px;
+    background-color: #fae8e0;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    
+} 
+
+.boxtwo {
+    width: 400px;
+    height: auto; 
+    margin-top: 30px;
+    margin: 30px auto;
+    margin-top: 0px;
+    padding-bottom: 30px;
+    background-color: #fae8e0;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+} 
+
+.boxthree {
+    width: 400px;
+    height: 250px;
+    margin: 30px auto;
+    background-color: #fae8e0;
+    border-radius: 10px;
+} 
+.boxfour {
+    width: 400px;
+    height: 250px;
+    margin: 30px auto;
+    margin-top: 50px;
+    padding-bottom: 30px;
+    background-color: #fae8e0;
+    border-radius: 10px;
+} 
+
+
+.searchbox {
+    width: 850px;
+    height: 190px;
+    margin: auto;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    background-color: #fae8e0;
+    border-radius: 10px;
+} 
+
+.plansbox {
+    width: 850px;
+    height: 250px;
+    margin: auto;
+    margin-top: 50px;
+    background-color: #fae8e0;
+    border-style: solid;
+    border-width: 5px;
+} 
+
+
+
+
+
+
+
+
+
+/*-----footer-----*/
+
+.footer {
+	margin: auto;
+	padding-bottom: 0px; 
+	min-width: 1200px;
+    
+}
+
+.linkswrapper { 
+	width:960px; 
+	margin: auto; 
+	text-align: center;
+	padding-bottom: 20px;
+}
+		
+.legaltestwrapper {
+	background-color: #e5e5e5;
+}
+
+.legaltest {
+	margin: auto; 
+	width: 960px; 
+	text-align: justify; 
+	padding-top: 20px;
+	color: #999999;
+}
+			
+.copyright {
+	text-align: center;
+}
+
+#plan-meta .myself-data, #plan-meta .income-data, #plan-meta .family-data, #plan-meta .credit-data {
+        width: 250px;
+        color: blue;
+        margin: 20px auto;
+        font-size: 14px;
+}
+
+#plan-meta .myself-data input[type='text'], #plan-meta .income-data input[type='text'] {
+    width: 100px;
+}
+
+#plan-meta .myself-data input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+}
+
+#plan-meta .income-data {
+    margin-top: 50px;
+}
+
+#plan-meta .family-data {
+    width: 350px;
+}
+
+#plan-meta .family-data h2 {
+    padding-top: 40px;
+    text-transform: uppercase;
+    text-decoration: underline;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+
+#family-member-row-template {
+    display: none;
+}
+
+#credit-result {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 70px;
+    text-align: center;
+
+}
+/* Custom code for applicants page */
+.formbox{
+	margin:30px;
+	background-color: #FAE8E0;
+	border-radius: 10px;
+	width: 900px;
+}
+.info-container{
+	padding: 15px 30px;
+}
+.contactName, .homeAddress, .mailingAddress, .contactMethods, .prefferedSpokenWritten, .questionsTable1, .addApplicant, .docsType, .SEVISdocsType, .otherDocsTypesName, .otherImmigrationInfo, .PAspouseName, .PAdependentsNameUnmarried, .applyingForCoverage, .contactBasicInfo, .USCitizen, .tobaccoUser, .isMarried, .RegisteredNativeAmerican, .FullTimeStudent, .TaxStatus, .incomeSourceTable {
+	width:100%;
+	margin:20px 0px;
+}
+.contactName td, .homeAddress td, .mailingAddress td, .contactMethods td, .prefferedSpokenWritten td, .questionsTable1 td, .addApplicant td, .docsType td, .SEVISdocsType td, .otherDocsTypesName td, .otherImmigrationInfo td, .PAspouseName td, .PAdependentsNameUnmarried td, .contactBasicInfo td, .USCitizen td, .tobaccoUser td, .isMarried td, .RegisteredNativeAmerican td, .FullTimeStudent td, .TaxStatus td, .incomeSourceTable td{
+	padding:10px 20px;
+}
+.incomeSourceTable td{
+	width:24%;
+}
+.contactName input[type="text"], .homeAddress input[type="text"], .homeAddress select, .mailingAddress input[type="text"], .mailingAddress select, .contactMethods input[type="text"], .prefferedSpokenWritten select, .addApplicant input, .docsType input[type="text"], .otherDocsTypesName input[type="text"], .PAspouseName input[type="text"], .PAdependentsNameUnmarried input[type="text"], .contactBasicInfo input[type="text"], .contactBasicInfo select, .USCitizen input[type="text"], .USCitizen select, .tobaccoUser   input[type="text"], .tobaccoUser select, .isMarried input[type="text"], .isMarried  select, .RegisteredNativeAmerican input[type="text"], .FullTimeStudent input[type="text"], .TaxStatus select, {
+	width:100%;
+}
+.incomeSourceTable input[type="text"], .incomeSourceTable select{
+	width:90%;
+}
+
+.taxStatusJointDependentPersonSelectionDiv input{
+	margin:15px 0px;
+}
+.give-margin-15-20{
+	margin:15px 20px;
+}
+.give-margin-10-20{
+	margin:10px 20px;
+}
+#col-1, #col-2, #col-3 {
+	width:33%;
+	display:inline-block;
+	vertical-align:top;
+}
+
+#col-1 table, #col-2 table, #col-3 table {
+	margin: 0px !important;
+}
+
+/* css for popup box (relation) */
+.error_class{
+	border-color: red;
+}
+.focus {
+    border: 2px solid #FF0000;
+    background-color: #FFEEAA;
+}
+.error_popup_box { 
+    display:none; 
+    position:fixed;  
+	overflow-y: auto;
+	height: 305px;  
+    width:600px;  
+    background:#FFFFFF;  
+    left: 35%;
+    top: 150px; 
+    z-index:100; 
+	border-radius: 12px;
+    -moz-box-shadow: 0 0 5px #009100;
+    -webkit-box-shadow: 0 0 5px #009100;
+    box-shadow: 0 0 5px #009100;
+	
+ }
+.error_popup_box1 { 
+    position:fixed;  
+	overflow-y: auto;
+    margin-left: 15px; 
+	height: 305px; 
+	max-width:575px;
+     padding:15px;  
+    font-size:12px; 
+	
+ }
+
+.container_box{
+    background: #d2d2d2; 
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 50;
+    background-color: #606060;
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+    -moz-opacity: .5;
+    opacity: .5;
+}
+
+a{  
+cursor: pointer;  
+text-decoration:none;  
+} 
+
+/* This is for the positioning of the Close Link */
+.popupBoxClose {
+    font-size:14px;  
+    line-height:15px;  
+    right:5px;  
+    top:5px;  
+    position:absolute;  
+    color:#6fa5e2;  
+    font-weight:500;      
+}

@@ -1,0 +1,1692 @@
+@extends('home')
+
+@section('content')
+
+<div class="planbody"/>
+     <div class="planbodywrapper"/>
+
+<!---------------WHO NEEDS COVERAGE FORM---------------->
+<input type="hidden" name="step_id" id="step_id" value="{{ $step_id}}" />
+<input type="hidden" name="applicant_id" id="applicant_id" value="{{ $applicant_id}}" />
+<div class="formbox" id="formbox1" style ="display:none">
+	<div class="info-container">			
+		<table class="contactName" id="contactName">
+			<tbody>
+				<tr id="form1_first" class = "form1_first">
+					<td>
+						<span class="table-headers">First Name</span><br/>	
+						<input type="text" name="contactFirstName" id="contactFirstName" />
+					</td>
+					<td>
+						<span class="table-headers">Middle Name</span><br/>	
+						<input type="text" name="contactMiddleName" id="contactMiddleName" />
+					</td>
+					<td>
+						<span class="table-headers">Last Name</span><br/>
+						<input type="text" name="contactLastName" id="contactLastName" />
+					</td>
+					<td>
+						<span class="table-headers">Suffix</span><br/>
+						<input type="text" name="contactSuffix" id="contactSuffix" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="give-margin-10-20">
+			<h4>Home Address: </h4>
+		</div>
+		<table class="homeAddress" id="homeAddress">
+			<tbody>
+				<tr id="form1_first" class = "form1_first">
+					<td colspan="2">
+						
+						<span class="table-headers">Street Address</span><br/>
+						<input type="text" name="contactAddressStreetName1" id = "contactAddressStreetName1" />
+					</td>
+					<td>
+						<span class="table-headers">APT/STE #</span><br/>
+						<input type="text" name="contactAddressStreetName2" id = "contactAddressStreetName2" />
+					</td>	
+				</tr>
+				<tr id="form1_first" class = "form1_first">
+					<td>
+						<span class="table-headers">City</span><br/>
+						<input type="text" name="contactAddressCity" id = "contactAddressCity" />
+					</td>
+					<td>
+						<span class="table-headers">State</span><br/>
+					 	<select class="" onchange="" id="contactAddressState" name="contactAddressState" data-toggle="dropdown">
+							<option value="">Select...</option>
+							<option value="AL">Alabama</option> 
+							<option value="AK">Alaska</option> 
+							<option value="AZ">Arizona</option> 
+							<option value="AR">Arkansas</option> 
+							<option value="CA">California</option> 
+							<option value="CO">Colorado</option> 
+							<option value="CT">Connecticut</option> 
+						</select>
+					</td>
+					<td>
+						<span class="table-headers">Zip</span><br/>	
+						<input type="text" name="contactAddressZip" id = "contactAddressZip" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="give-margin-10-20">
+			<p>Is your mailing address same as home?</p>
+			 <input type="radio" name="contactMailingAddressSame" id="contactMailingAddressSameYes" onclick='openmailingaddress(this.value)' value="1"/> Yes<br/>
+			<input type="radio" name="contactMailingAddressSame" id="contactMailingAddressSameNo" onclick='openmailingaddress(this.value)' value="0"/> No
+		</div>       
+		<div style="display:none" id="show_mailingaddresss">
+			<div class="give-margin-15-20">
+				<h4>Mailing Address: </h4>
+			</div>
+			<table class="mailingAddress" id="mailingAddress" >
+				<tbody>
+					<tr id="form1_first" class = "form1_first" >
+						<td colspan="2">
+							
+							<span class="table-headers">Street Address</span><br/>	
+							<input type="text" name="contactMailingAddressStreetName1" id = "contactMailingAddressStreetName1" />
+						</td>
+						<td>
+							<span class="table-headers">APT/STE #</span><br/>
+							<input type="text" name="contactMailingAddressStreetName2" id = "contactMailingAddressStreetName2" />
+						</td>
+					</tr>
+					<tr id="form1_first" class = "form1_first">
+						<td>
+							<span class="table-headers">City</span><br/>	
+							<input type="text" name="contactMailingAddressCity" id = "contactMailingAddressCity" />
+						</td>
+						<td>
+							<span class="table-headers">State</span><br/>
+							<select class="" onchange="" id="contactMailingAddressState" name="contactMailingAddressState" data-toggle="dropdown">
+								<option value="">Select...</option>
+								<option value="AL">Alabama</option> 
+								<option value="AK">Alaska</option> 
+								<option value="AZ">Arizona</option> 
+								<option value="AR">Arkansas</option> 
+								<option value="CA">California</option> 
+								<option value="CO">Colorado</option> 
+								<option value="CT">Connecticut</option>
+							</select>
+						</td>
+						<td>
+							<span class="table-headers">Zip</span><br/>
+							<input type="text" name="contactMailingAddressZip" id = "contactMailingAddressZip" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<table class="contactMethods">
+			<tr id="form1_first" class = "form1_first">
+				<td>
+					<span class="table-headers">Phone Number xxx-xxx-xxxx</span><br/>
+					<input type="text" name="contactPhone" id="contactPhone" />
+				</td>
+				<td>
+					<span class="table-headers">Extension (Optional)</span><br/>
+					<input type="text" name="contactPhoneExt" id="contactPhoneExt" />
+				</td>
+				<td>
+					<span class="table-headers">Phone Type (Optional)</span><br/>
+					<input type="text" name="contactPhoneTypePrimary" id="contactPhoneTypePrimary" />
+				</td>
+			</tr>
+		</table>
+		<table class="prefferedSpokenWritten">
+			<tr id="form1_first" class = "form1_first">
+				<td>
+					<span class="table-headers">Preferred Spoken Language (optional)</span><br/>
+					<select name="contactSpokenLanguage" id="contactSpokenLanguage" >
+						<option selected value="1">English</option>
+						<option value="2">Spanish</option>
+						<option value="3">Vietnamese</option>
+						<option value="4">Tagalog</option>
+						<option value="5">Russian</option>
+						<option value="6">Portuguese</option>
+						<option value="7">Arabic</option>
+						<option value="8">Chinese</option>
+						<option value="9">French</option>
+						<option value="10">French Creole</option>
+						<option value="11">German</option>
+						<option value="12">Gujarati</option>
+						<option value="13">Hindi</option>
+						<option value="14">Korean</option>
+						<option value="15">Polish</option>
+						<option value="16">Urdu</option>
+						<option value="17">Other</option>
+					</select>
+				</td>
+				<td>
+					<span class="table-headers">Preferred Written Language (optional)</span><br/>
+					<select name="contactWrittenLanguage" id="contactWrittenLanguage" >
+						<option selected value="1">English</option>
+						<option value="2">Spanish</option>
+						<option value="3">Vietnamese</option>
+						<option value="4">Tagalog</option>
+						<option value="5">Russian</option>
+						<option value="6">Portuguese</option>
+						<option value="7">Arabic</option>
+						<option value="8">Chinese</option>
+						<option value="9">French</option>
+						<option value="10">French Creole</option>
+						<option value="11">German</option>
+						<option value="12">Gujarati</option>
+						<option value="13">Hindi</option>
+						<option value="14">Korean</option>
+						<option value="15">Polish</option>
+						<option value="16">Urdu</option>
+						<option value="17">Other</option>
+					</select>
+				</td>
+				</tr>
+		</table>
+		
+		<div class="give-margin-15-20">
+			<p>Do you want to read your notices about your application on this website?</p>
+			 <input type="radio" name = "noticesOnlineNoRadio" id  = "noticesOnlineNoRadio" value= "1" /> Yes
+		</div>
+			
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>
+</div>
+
+
+</div>
+<div class="formbox" id="formbox2">
+<div class="row person-header">
+  <div class="col-xs-4">
+    <p class="lead person-label"><strong>You</strong></p>
+  </div>
+  <div class="col-xs-6">
+    <p class="lead applying-for-coverage pull-left">
+      <small>Applying <span class="hide-xs">for Coverage</span>?</small>
+    </p>
+    <div class="control-group pull-left" style="margin-left: 12px;">
+      <select name="managed_people[][applying]" class="form-control applying-select">
+        <option value=""></option>
+        <option value="yes" selected="selected">Yes</option>
+        <option value="no">No</option>
+      </select>
+      <p class="help-block error-message" ></p>
+    </div>
+  </div>
+  <div class="col-xs-2">
+    
+  </div>
+</div>
+	<div class="info-container">			
+		<table class="contactName" id="contactName">
+			<tbody>
+				<tr id="form1_first" class = "form1_first">
+					<td>
+						<span class="table-headers">First Name</span><br/>	
+						<input type="text" name="contactFirstName" id="contactFirstName" />
+					</td>
+				
+					<td>
+						<span class="table-headers">Last Name</span><br/>
+						<input type="text" name="contactLastName" id="contactLastName" />
+					</td>
+					<td>
+						<span class="table-headers">Suffix</span><br/>
+						<input type="text" name="contactSuffix" id="contactSuffix" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		
+    <div class="row application-row">
+
+      
+        <input name="managed_people[][relationship_to_primary]" value="18" type="hidden">
+      
+
+      <div class="col-sm-2 col-xs-4">
+        <div class="control-group">
+          <label>Gender</label>
+          <select class="form-control" name="managed_people[][gender]">
+            <option value=""></option>
+            <option value="male" selected="">Male</option>
+            <option value="female">Female</option>
+          </select>
+          <p class="help-block error-message" ></p>
+        </div>
+      </div>
+
+      <div class="col-sm-3 col-xs-4">
+        <div class="control-group has-error">
+          <label>Date of Birth</label>
+          <input name="managed_people[][date_of_birth]" class="form-control" value="12/12/2012" placeholder="MM/DD/YYYY" type="text">
+         
+        </div>
+      </div>
+
+      <div class="col-sm-3 col-xs-4 ssn">
+        <div class="control-group has-error">
+          <label>SSN</label>
+          <input name="managed_people[][ssn]" class="form-control inspectletIgnore" value="000-00-0000" autocomplete="off" placeholder="XXX-XX-XXXX" type="text">
+          <p class="help-block error-message" style="">Not valid.</p>
+        </div>
+      </div>
+    </div>
+		<div class="basic-checkboxes-section">
+      <div class="row">
+        <div class="col-sm-4">
+
+          <!-- US Citizen -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="control-group us-citizen-wrapper checkbox-field">
+                <div style="position: relative;" class=""><input style="" name="managed_people[][us_citizen]" class="form-control" type="checkbox"></div>
+                <label>US citizen</label>
+                <p class="help-block error-message" ></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Details for non US citizens -->
+          <div class="row immigration-details-wrapper" style="">
+            <div class="col-xs-12">
+              <div class="control-group">
+                <div class="row">
+                  <div class="col-xs-12">
+                    <label>Immigration Document</label>
+                  </div>
+                </div>
+                <div class="row application-row">
+                  <div class="col-xs-12">
+                    <select class="form-control income-source" name="managed_people[][immigration_document_type]">
+                      
+                      
+                        <option value="">None</option>
+                      
+                        <option value="permanent_resident_card">Permanent Resident Card ("Green Card", I-551)</option>
+                      
+                        <option value="i_551_stamp" selected="">Temporary I-551 Stamp (on passport or I-94, I-94A)</option>
+                      
+                        <option value="immigrant_visa">Machine Readable Immigrant Visa (with temporary I-551 language)</option>
+                      
+                        <option value="employment_authorization_card">Employment Authorization Card (EAD, I-766)</option>
+                      
+                        <option value="arrival_departure_record">Arrival/Departure Record (I-94, I-94A)</option>
+                      
+                        <option value="arrival_departure_record_foreign_passport">Arrival/Departure Record in foreign passport (I-94)</option>
+                      
+                        <option value="foreign_passport">Foreign passport</option>
+                      
+                        <option value="reentry_permit">Reentry Permit (I-327)</option>
+                      
+                        <option value="refugee_document">Refugee Travel Document (I-571)</option>
+                      
+                        <option value="f1_student_visa">Certificate of Eligibility for Nonimmigrant (F-1) Student Status (I-20)</option>
+                      
+                        <option value="j1_visitor_visa">Certificate of Eligibility for Exchange Visitor (J-1) Status (DS2019)</option>
+                      
+                        <option value="notice_of_action">Notice of Action (I-797)</option>
+                      
+                    </select>
+                    <p class="help-block error-message" ></p>
+                  </div>
+                </div>
+              </div>
+              <div class="row alien-number-wrapper" style="">
+                <div class="col-xs-12">
+                  <div class="control-group has-error">
+                    <div class="row application-row">
+                      <div class="col-sm-4">
+                        <label>Alien Number</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input name="managed_people[][alien_number]" class="inline form-control" value="22222" placeholder="Alien Number" type="text">
+                        <p class="help-block error-message" style="">Alien number must contain 7 to 9 digits.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row foreign-passport-wrapper" >
+                <div class="col-xs-12">
+                  <div class="control-group">
+                    <div class="row application-row">
+                      <div class="col-sm-4">
+                        <label>Foreign Passport Number</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input name="managed_people[][foreign_passport_number]" class="inline form-control" value="" placeholder="Foreign Passport Number" type="text">
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="row application-row">
+                      <div class="col-sm-4">
+                        <label>Foreign Passport Country</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <select name="managed_people[][foreign_passport_country]" class="inline form-control" placeholder="Foreign Passport Country">
+                          <option value="" selected="selected">Select Country</option>
+                          
+                            <option value="Afghanistan"> Afghanistan
+                            </option>
+                                             
+                          
+                            <option value="Pitcairn"> Pitcairn
+                          
+                            <option value="Zambia"> Zambia
+                            </option>
+                          
+                            <option value="Zimbabwe"> Zimbabwe
+                            </option>
+                          
+                        </select>
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="row application-row">
+                      <div class="col-sm-4">
+                        <label>Foreign Passport Expiration</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input name="managed_people[][foreign_passport_expires_on]" class="form-control" value="" placeholder="MM/DD/YYYY" type="text">
+                        <p class="help-block error-message" >
+                      </p></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row ead-wrapper" >
+                <div class="col-xs-12">
+                  <div class="control-group">
+                    <div class="row application-row">
+                      <div class="col-sm-4">
+                        <label>EAD Number</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input name="managed_people[][ead_number]" class="inline form-control" value="" placeholder="EAD Number" type="text">
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="row application-row">
+                      <div class="col-sm-4">
+                        <label>EAD Expiration</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input name="managed_people[][ead_expires_on]" class="form-control" value="" placeholder="MM/DD/YYYY" type="text">
+                        <p class="help-block error-message" >
+                      </p></div>
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="row application-row">
+                      <div class="col-sm-4">
+                        <label>EAD Category Code</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <select class="form-control" name="managed_people[][ead_category_code]">
+                          
+                          
+                            <option value="A01" selected=""> A01</option>
+                          
+                            <option value="A02"> A02</option>
+                          
+                            <option value="A03"> A03</option>
+                          
+                            <option value="A04"> A04</option>
+                          
+                            <option value="A05"> A05</option>
+                          
+                            <option value="A06"> A06</option>
+                          
+                            <option value="A07"> A07</option>
+                          
+                            <option value="A08"> A08</option>
+                          
+                            <option value="A09"> A09</option>
+                          
+                            <option value="A10"> A10</option>
+                          
+                            <option value="A11"> A11</option>
+                          
+                            <option value="A12"> A12</option>
+                          
+                            <option value="A13"> A13</option>
+                          
+                            <option value="A14"> A14</option>
+                          
+                            <option value="A15"> A15</option>
+                          
+                            <option value="A16"> A16</option>
+                          
+                            <option value="A17"> A17</option>
+                          
+                            <option value="A18"> A18</option>
+                          
+                            <option value="A19"> A19</option>
+                          
+                            <option value="A20"> A20</option>
+                          
+                            <option value="C01"> C01</option>
+                          
+                            <option value="C02"> C02</option>
+                          
+                            <option value="C03"> C03</option>
+                          
+                            <option value="C04"> C04</option>
+                          
+                            <option value="C05"> C05</option>
+                          
+                            <option value="C06"> C06</option>
+                          
+                            <option value="C07"> C07</option>
+                          
+                            <option value="C08"> C08</option>
+                          
+                            <option value="C09"> C09</option>
+                          
+                            <option value="C10"> C10</option>
+                          
+                            <option value="C11"> C11</option>
+                          
+                            <option value="C14"> C14</option>
+                          
+                            <option value="C15"> C15</option>
+                          
+                            <option value="C16"> C16</option>
+                          
+                            <option value="C17"> C17</option>
+                          
+                            <option value="C18"> C18</option>
+                          
+                            <option value="C19"> C19</option>
+                          
+                            <option value="C20"> C20</option>
+                          
+                            <option value="C21"> C21</option>
+                          
+                            <option value="C22"> C22</option>
+                          
+                            <option value="C23"> C23</option>
+                          
+                            <option value="C24"> C24</option>
+                          
+                        </select>
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row i94-wrapper" >
+                <div class="col-md-12 col-xs-6">
+                  <div class="control-group">
+                    <div class="row application-row">
+                      <div class="col-sm-4">
+                        <label>I-94 Number</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input name="managed_people[][i_94_number]" class="inline form-control" value="" placeholder="I-94 Number" type="text">
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row sevis-id-wrapper" >
+                <div class="col-md-12 col-xs-6">
+                  <div class="control-group">
+                    <div class="row application-row">
+                      <div class="col-sm-4">
+                        <label>SEVIS ID</label>
+                      </div>
+                      <div class="col-sm-8">
+                        <input name="managed_people[][sevis_id]" class="inline form-control" value="" placeholder="SEVIS ID" type="text">
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Uses tobacco -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="control-group uses-tobacco-wrapper checkbox-field">
+                <div style="position: relative;" class=""><input style="" name="managed_people[][uses_tobacco]" class="form-control" checked="" type="checkbox"></div>
+                <label>Tobacco user</label>
+                <p class="help-block error-message" ></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Married -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="control-group married-wrapper checkbox-field">
+                <div style="position: relative;" class=""><input style="" name="managed_people[][married]" class="form-control" checked="" type="checkbox"></div>
+                <label>Married</label>
+                <p class="help-block error-message" ></p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="col-sm-4 applying-only-checkboxes">
+
+          <!-- Native American -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="control-group native-american-wrapper checkbox-field has-error">
+                <div style="position: relative;" class=""><input style="" name="managed_people[][native_american]" class="form-control" checked="" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+                <label>Registered Native American</label>
+             
+              </div>
+            </div>
+          </div>
+
+          <!-- Full time student -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="control-group full-time-student-wrapper checkbox-field">
+                <div style="position: relative;" class=""><input style="" name="managed_people[][full_time_student]" class="form-control" checked="" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+                <label>Full-time Student</label>
+                <p class="help-block error-message" ></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pregnant -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div  class="control-group pregnant-wrapper checkbox-field">
+                <div style="position: relative;" class=""><input style="" name="managed_people[][pregnant]" class="form-control" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+                <label>
+                  Pregnant
+                  <span data-original-title="In some states, pregnant women may be eligible for Medicaid or CHIP." class="help-icon glyphicon glyphicon-question-sign" data-toggle="tooltip" data-container="body" data-placement="right" title=""></span>
+                </label>
+                <p class="help-block error-message" ></p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Parent / Caretaker -->
+          <div class="row">
+            <div class="col-xs-12">
+              <div  class="control-group parent-caretaker-wrapper checkbox-field">
+                <div style="position: relative;" class=""><input style="" name="managed_people[][parent_caretaker]" class="form-control" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+                <label>
+                  Parent / Caretaker <span data-original-title="If you are the primary caretaker of a child, you may be eligible for Medicaid." class="help-icon glyphicon glyphicon-question-sign" data-toggle="tooltip" data-container="body" data-placement="right" title=""></span>
+                </label>
+                <p class="help-block error-message" ></p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div  class="control-group tax-filing-status-wrapper single-tax-filing-status-wrapper">
+            <label>Tax status for 2015?</label>
+            <select class="form-control" name="managed_people[][single_tax_filing_status]">
+              
+              
+                <option value=""> </option>
+              
+                <option value="single_filing"> Single, Filing Taxes</option>
+              
+                <option value="single_dependent"> Single, Claimed as Dependent</option>
+              
+                <option value="single_not_filing"> Single, Not Filing Taxes</option>
+              
+            </select>
+            <p class="help-block error-message" ></p>
+          </div>
+
+          <div class="control-group tax-filing-status-wrapper married-tax-filing-status-wrapper has-error">
+            <label>Tax status for 2015?</label>
+            <select class="form-control" name="managed_people[][married_tax_filing_status]">
+              
+              
+                <option value="" selected=""> </option>
+              
+                <option value="married_filing_jointly"> Married, Filing Jointly</option>
+              
+                <option value="married_filing_separately"> Married, Filing Separately</option>
+              
+                <option value="married_dependent"> Married, Claimed as Dependent</option>
+              
+                <option value="married_not_filing"> Married, Not Filing Taxes</option>
+              
+            </select>
+            <p class="help-block error-message" style="">Required.</p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+	  <div class="income-section"><hr>
+
+<div class="row person-section-header">
+  <div class="col-xs-12">
+    <p class="lead" style="margin-bottom: 4px">Income Sources</p>
+    <p>
+      Please list each source of income for this person for 2015. Enter amounts per year. This is required for lower prices. Estimates are okay.
+    </p>
+  </div>
+</div>
+
+<div class="row application-row">
+  <div class="col-xs-12 income-source-views"><div><div class="row income-source-view">
+
+  <div class="col-md-11">
+    <div class="row">
+      <div class="col-md-3 col-xs-6 annual-amount-wrapper">
+        <div class="control-group">
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input class="form-control text-right annual-amount inspectletIgnore" name="managed_people[][income_sources][][annual_amount]" value="0" type="text">
+          </div>
+          <p class="help-block error-message" ></p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-xs-6 income-type-wrapper" >
+        <div class="control-group">
+          <select class="form-control income-type" name="managed_people[][income_sources][][income_type]">
+            
+            
+              <option value="no_income" selected="">Select Source</option>
+            
+              <option value="job">Job</option>
+            
+              <option value="self_employed">Self Employed</option>
+            
+              <option value="social_security">Social Security Benefits</option>
+            
+              <option value="retirement">Retirement Benefits</option>
+            
+              <option value="unemployment_benefits">Unemployment Benefits</option>
+            
+              <option value="farming_fishing">Farming &amp; Fishing</option>
+            
+              <option value="capital_gains">Capital Gains</option>
+            
+              <option value="alimony">Alimony</option>
+            
+              <option value="pension">Pension Benefits</option>
+            
+              <option value="investment">Investment</option>
+            
+              <option value="rental_royalty">Rental / Royalty</option>
+            
+              <option value="other">Other</option>
+            
+          </select>
+          <p class="help-block error-message" ></p>
+        </div>
+        <p class="help-block"></p>
+      </div>
+
+      <div class="col-md-3 col-xs-6 employer-name-wrapper" >
+        <div class="control-group">
+          <input class="form-control" name="managed_people[][income_sources][][employer_name]" value="" placeholder="Employer" type="text">
+          <p class="help-block error-message" ></p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-xs-6 employer-phone-wrapper" >
+        <div class="control-group">
+          <input placeholder="(XXX) XXX XXXX" class="form-control" name="managed_people[][income_sources][][employer_phone_number]" value="" type="tel">
+          <p class="help-block error-message" ></p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-xs-6 other-income-type-wrapper" >
+        <div class="control-group">
+          <select class="form-control income-type" name="managed_people[][income_sources][][other_income_type]">
+            
+            
+              <option value="" selected="">Select Source</option>
+            
+              <option value="cancelled_debt">Cancelled Debt</option>
+            
+              <option value="court_awards">Court Awards</option>
+            
+              <option value="jury_duty_pay">Jury Duty Pay</option>
+            
+              <option value="cash_support">Cash Support</option>
+            
+              <option value="prize_award">Gambling, Prizes or Awards</option>
+            
+          </select>
+          <p class="help-block error-message" ></p>
+        </div>
+        <p class="help-block"></p>
+      </div>
+    </div>
+  </div>
+
+  <div  class="col-md-1 col-xs-6 remove-income-source pull-right">
+    <div class="control-group pull-right">
+      <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></a>
+    </div>
+  </div>
+</div>
+</div><div><div class="row income-source-view striped">
+
+  <div class="col-md-11">
+    <div class="row">
+      <div class="col-md-3 col-xs-6 annual-amount-wrapper">
+        <div class="control-group">
+          <div class="input-group">
+            <span class="input-group-addon">$</span>
+            <input class="form-control text-right annual-amount inspectletIgnore" name="managed_people[][income_sources][][annual_amount]" value="23,243" type="text">
+          </div>
+          <p class="help-block error-message" ></p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-xs-6 income-type-wrapper" style="display: block;">
+        <div class="control-group">
+          <select class="form-control income-type" name="managed_people[][income_sources][][income_type]">
+            
+            
+              <option value="no_income">Select Source</option>
+            
+              <option value="job">Job</option>
+            
+              <option value="self_employed">Self Employed</option>
+            
+              <option value="social_security">Social Security Benefits</option>
+            
+              <option value="retirement" selected="">Retirement Benefits</option>
+            
+              <option value="unemployment_benefits">Unemployment Benefits</option>
+            
+              <option value="farming_fishing">Farming &amp; Fishing</option>
+            
+              <option value="capital_gains">Capital Gains</option>
+            
+              <option value="alimony">Alimony</option>
+            
+              <option value="pension">Pension Benefits</option>
+            
+              <option value="investment">Investment</option>
+            
+              <option value="rental_royalty">Rental / Royalty</option>
+            
+              <option value="other">Other</option>
+            
+          </select>
+          <p class="help-block error-message" ></p>
+        </div>
+        <p class="help-block"></p>
+      </div>
+
+      <div class="col-md-3 col-xs-6 employer-name-wrapper" >
+        <div class="control-group">
+          <input class="form-control" name="managed_people[][income_sources][][employer_name]" value="" placeholder="Employer" type="text">
+          <p class="help-block error-message" ></p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-xs-6 employer-phone-wrapper" >
+        <div class="control-group">
+          <input placeholder="(XXX) XXX XXXX" class="form-control" name="managed_people[][income_sources][][employer_phone_number]" value="" type="tel">
+          <p class="help-block error-message" ></p>
+        </div>
+      </div>
+
+      <div class="col-md-3 col-xs-6 other-income-type-wrapper" >
+        <div class="control-group">
+          <select class="form-control income-type" name="managed_people[][income_sources][][other_income_type]">
+            
+            
+              <option value="" selected="">Select Source</option>
+            
+              <option value="cancelled_debt">Cancelled Debt</option>
+            
+              <option value="court_awards">Court Awards</option>
+            
+              <option value="jury_duty_pay">Jury Duty Pay</option>
+            
+              <option value="cash_support">Cash Support</option>
+            
+              <option value="prize_award">Gambling, Prizes or Awards</option>
+            
+          </select>
+          <p class="help-block error-message" ></p>
+        </div>
+        <p class="help-block"></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-1 col-xs-6 remove-income-source pull-right">
+    <div class="control-group pull-right">
+      <a href="#" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></a>
+    </div>
+  </div>
+</div>
+</div></div>
+</div>
+
+<div class="row application-row">
+  <div class="col-xs-12">
+    <a href="#" class="add-income-source btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Income</a>
+  </div>
+</div>
+
+<div class="row application-row">
+  <div class="col-xs-12 not-sure-wrapper">
+    <a href="#" class="not-sure">Not sure how much?</a>
+  </div>
+  <div class="col-xs-12 estimate-wrapper" >
+    <p>You should put your best guess, even if it's based on what you made in 2014. If your income estimate is too high, you will get a larger tax return. If it's too low, your return will be smaller.</p>
+  </div>
+</div>
+</div>
+<div class="existing-coverage-section">
+
+      <hr>
+
+      <div class="row person-section-header">
+        <div class="col-xs-12">
+          <p class="lead">Existing Coverage</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="row existing-coverage-row">
+            <div class="col-xs-9 col-sm-6">
+              Is this person already enrolled in health insurance?
+            </div>
+            <div class="col-xs-3 col-sm-2">
+              
+
+              <div class="control-group">
+                <select class="form-control has-health-insurance" name="managed_people[][has_health_insurance]">
+                  <option value="">
+                  </option><option value="yes">Yes
+                  </option><option value="no" selected="selected">No
+                </option></select>
+                <p class="help-block error-message" ></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row existing-coverage-row existing-coverage-types-wrapper" >
+            <div class="col-sm-12">
+              <div class="row">
+                <div class="col-xs-12">
+                  Which kind of insurance?
+                </div>
+              </div>
+
+              <br>
+
+              <div class="row">
+
+                <!-- Left side checkboxes -->
+                <div class="col-sm-6">
+
+                  <!-- Employer insurance -->
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="control-group employer-sponsored-insurance-enrolled-wrapper checkbox-field">
+                        <div style="position: relative;" class="icheckbox_square-blue"><input  name="managed_people[][employer_sponsored_insurance_enrolled]" class="form-control" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+                        <label>Employer (even through a family member)</label>
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Individual insurance -->
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="control-group individual-coverage-enrolled-wrapper checkbox-field">
+                        <div style="position: relative;" class="icheckbox_square-blue"><input  name="managed_people[][individual_coverage]" class="form-control" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+                        <label>Individual health plan (not from a job)</label>
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Medicare -->
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="control-group medicare-enrolled-wrapper checkbox-field">
+                        <div style="position: relative;" class="icheckbox_square-blue"><input  name="managed_people[][medicare_enrolled]" class="form-control" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+                        <label>Medicare</label>
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Medicaid -->
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="control-group medicaid-enrolled-wrapper checkbox-field">
+                        <div style="position: relative;" class="icheckbox_square-blue"><input  name="managed_people[][medicaid_enrolled]" class="form-control" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+                        <label>Medicaid</label>
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right side checkboxes -->
+                <div class="col-sm-6">
+
+                  <!-- CHIP -->
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="control-group chip-enrolled-wrapper checkbox-field">
+                        <div style="position: relative;" class="icheckbox_square-blue"><input  name="managed_people[][chip_enrolled]" class="form-control" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+                        <label>Children's Health Insurance Program (CHIP)</label>
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- VA -->
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="control-group va-enrolled-wrapper checkbox-field">
+                        <div style="position: relative;" class="icheckbox_square-blue"><input  name="managed_people[][va_enrolled]" class="form-control" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+                        <label>Veteran's Affairs Health Care</label>
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- TriCare -->
+                  <div class="row">
+                    <div class="col-xs-12">
+                      <div class="control-group va-enrolled-wrapper checkbox-field">
+                        <div style="position: relative;" class="icheckbox_square-blue"><input  name="managed_people[][tricare_enrolled]" class="form-control" type="checkbox"><ins style="position: absolute; top: 0%; left: 0%; display: block; width: 100%; height: 100%; margin: 0px; padding: 0px; background: rgb(255, 255, 255) none repeat scroll 0% 0%; border: 0px none; opacity: 0;" class="iCheck-helper"></ins></div>
+                        <label>TriCare</label>
+                        <p class="help-block error-message" ></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row existing-coverage-row">
+            <div class="col-xs-9 col-sm-6">
+              Does this person's employer offer health insurance?
+            </div>
+            <div class="col-xs-3 col-sm-6">
+              <div class="control-group has-error">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <select class="form-control employer_offers_insurance" name="managed_people[][employer_offers_insurance]">
+                      <option value="">
+                      </option><option value="yes" selected="selected">Yes
+                      </option><option value="no">No
+                    </option></select>
+                  </div>
+                </div>
+                <div class="row">
+                 
+                </div>
+              </div>
+            </div>
+          </div>
+
+<!--
+          <div class="row existing-coverage-row">
+            <div class="col-xs-9 col-sm-6">
+              Did this person get rejected by or lose Medicaid or CHIP since 10/31/2014?
+            </div>
+            <div class="col-xs-3 col-sm-2">
+              <div class="control-group">
+                <select class="form-control rejected_for_medicaid_or_chip" name="managed_people[][rejected_for_medicaid_or_chip]">
+                  <option value=""></options>
+                  <option value="yes" selected=selected>Yes</options>
+                  <option value="no" >No</options>
+                </select>
+                <p class="help-block error-message" ></p>
+              </div>
+            </div>
+          </div>
+-->
+
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sep-wrapper">
+
+      <hr>
+
+      <div class="row person-section-header">
+        <div class="col-xs-12">
+          <p class="lead">Special Enrollment Reason</p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12">
+
+          <div class="row sep-row">
+            <div class="col-xs-9 col-sm-6">
+              Did this person get rejected by Medicaid or CHIP since 10/31/2014?
+            </div>
+            <div class="col-xs-3 col-sm-2">
+              <div class="control-group">
+                <select class="form-control rejected_for_medicaid_or_chip" name="managed_people[][rejected_for_medicaid_or_chip]">
+                  <option value=""></option>
+                  <option value="yes" selected="selected">Yes</option>
+                  <option value="no">No</option>
+                </select>
+                <p class="help-block error-message" ></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="row sep-row">
+            <div class="col-xs-9 col-sm-6">
+              What is this person's reason for applying for coverage?
+            </div>
+            <div class="col-xs-3 col-sm-4">
+              <select name="managed_people[][sep_reason]" class="form-control sep-reason">
+                
+                
+                  <option value="losing_coverage">
+                    Losing health coverage
+                  </option>
+                
+                  <option value="relocation">
+                    Moving
+                  </option>
+                
+                  <option value="marriage" selected="">
+                    Got married or divorced
+                  </option>
+                
+                  <option value="had_baby">
+                    Had a baby
+                  </option>
+                
+                  <option value="placed_for_adoption">
+                    Placed for adoption
+                  </option>
+                
+                  <option value="placed_for_foster_care">
+                    Placed for foster care
+                  </option>
+                
+                  <option value="gained_citizenship">
+                    Gained citizenship
+                  </option>
+                
+                  <option value="left_incarceration">
+                    Left Incarceration
+                  </option>
+                
+              </select>
+              <p  class="tax-sep-disclaimer">Only valid if you didn't learn about the penalty until 2/15/15.</p>
+            </div>
+          </div>
+
+          <div class="row sep-row sep-reason-date-wrapper">
+            <div class="col-xs-9 col-sm-6">
+              What date?
+            </div>
+            <div class="col-xs-3 col-sm-3">
+              <div class="control-group has-error">
+                <input class="form-control" name="managed_people[][sep_reason_date]" value="" placeholder="MM/DD/YYYY" type="text">
+                <p class="help-block error-message" style="">Required.</p>
+              </div>
+            </div>
+          </div>
+
+
+    
+
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+
+              
+
+
+            <div class="row">
+              <div class="col-md-6 col-xs-6 text-left">
+                <a href="#" class="btn btn-primary add-person btn-lg"><span class="glyphicon glyphicon-plus"></span> Add Person</a>
+              </div>
+              <div class="col-md-6 col-xs-6 text-right">
+                <a href="#contact" class="btn btn-default btn-lg back">Back</a>
+                <a href="#differences" class="btn btn-primary btn-lg continue">Continue</a>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+              <div class="col-md-12">
+                <p style="display: block;" class="subsidy-instructions">Before continuing, please make sure you've added <strong>all</strong> members of your household, even the ones who are not applying for insurance.</p>
+              </div>
+            </div>
+    <div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>
+
+   </div>
+		
+
+			
+		
+
+
+
+<div class="clear"/></div>
+
+
+
+<input type="hidden" id="_token" value="{{ csrf_token() }}" />
+@stop
+
+@section('js')
+
+<script type="text/javascript" src="js/applicant.js"></script>
+
+<script type="text/javascript">
+
+
+
+
+function showlist(id){
+	
+var myage	= $('#myself-age').val();
+if(myage == ''){
+	alert('Please Enter Details');
+}	
+	reloadjson();
+	setTimeout(showlistexec(id), 4000);
+	
+}	
+
+
+
+/*
+function to show and hide mailing address
+*/
+function openmailingaddress(RadioVal){
+	
+		if(RadioVal == 1){
+			$( '#show_mailingaddresss' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+		}else{
+			$( '#show_mailingaddresss' ).show( 'slow', function() {
+				// Animation complete.
+			});
+		}
+
+
+}
+/*
+function to show next div
+*/
+function showApplicantinfodiv(){
+		$("#showApplicantinfodiv").show();
+		$("#info").hide();
+}
+
+/*
+ * Function to display applicant relative if applying for their health coverage
+ */
+function applyingForRelative(confirmation){
+	if(confirmation == 1){
+			$( '#applyingForRelatveContainer' ).show( 'slow', function() {
+				// Animation complete.
+			});
+		}else{
+			$( '#applyingForRelatveContainer' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+		}
+}
+
+
+/*
+ * Function to clone applicant relative
+ */
+function cloneApplicant(){
+	$( "#second-applicant-clone" ).clone().appendTo( "#applyingForRelatveContainer" );
+}
+/*
+ * Function to save first form
+ */
+
+	$('.btn-save-test').click(function() {
+		var data1 = {};
+     data1._token = $('#_token').val();
+   // data._token = $('#_token').val();
+
+		//var step_id =  $('#step_id').val();
+		
+		var items = [];
+		
+		var item_order = 1;
+	
+		
+
+		$('table tr.form1_first').each(function() {
+			var row = {};
+			$(this).find('input,select,textarea').each(function() {
+				if ($(this).is(':checkbox')) {
+					if ($(this).is(':checked')) {
+						row[$(this).attr('name')] = 1;
+					}
+					else {
+						row[$(this).attr('name')] = 0;
+					}
+				} 
+				else {
+					row[$(this).attr('name')] = $(this).val();
+				}
+			});
+			//row['item_order'] = item_order;
+			//row['step_id'] = step_id;
+			item_order++;
+			
+			items.push(row);
+		});
+			data1.info = JSON.stringify(items);
+			data1.step_id = 1;
+			data1.applicant_id = $('#applicant_id').val();
+	
+				$.post('/saveform/view', data1, function(result) {
+						$('#applicant_id').val(result);
+						 $("#formbox1").hide();
+						 $("#formbox2").show();
+							
+
+						}
+					);
+
+	});
+/*
+ * Function to save third form
+ */
+
+	$('.btn-save-form3').click(function() {
+		var data1 = {};
+		data1._token = $('#_token').val();
+		// data._token = $('#_token').val();
+		var step_id =  2;
+		var items = [];
+		var item_order = 1;
+	
+		
+
+		$('table tr.form3_first').each(function() {
+			
+			var row = {};
+			$(this).find('input,select,textarea').each(function() {
+				if ($(this).is(':checkbox')) {
+					if ($(this).is(':checked')) {
+						row[$(this).attr('name')] = 1;
+					}
+					else {
+						row[$(this).attr('name')] = 0;
+					}
+				}if ($(this).is(':radio')) {
+					
+					if ($(this).is(':checked')) {
+						var result = $(this).attr('id');//.split('-');
+						if(result){
+						var name         = result;//[0];/* //(split - after name ) */
+						}			
+						row[name] = 1;
+					}
+					else {
+						var result = $(this).attr('id');//.split('-');
+						if(result){
+						var name         = result;//[0];/* //(split - after name ) */
+						}
+						row[name] = 0;
+					}
+				} 
+				else {
+					
+					row[$(this).attr('name')] = $(this).val();
+				}
+			});
+			//row['item_order'] = item_order;
+			//row['step_id'] = step_id;
+			item_order++;
+			
+			items.push(row);
+		});
+		//alert(items);
+			data1.info = JSON.stringify(items);
+			data1.step_id = 3;
+			data1.applicant_id = $('#applicant_id').val();
+				$.post('/saveform/view', data1, function(result) {
+					
+						//	alert(result);
+						
+			 $("#formbox3").hide();
+			 $("#formbox4").show();
+							
+
+						}
+					);
+
+		
+		
+	});
+	
+/*
+ * Function to save fourth form
+ */
+
+	$('.btn-save-form4').click(function() {
+			
+			 	var data1 = {};
+		data1._token = $('#_token').val();
+		// data._token = $('#_token').val();
+		var step_id =  2;
+		var items = [];
+		var item_order = 1;
+	
+		
+
+		$('div.health_coverage').each(function() {
+			
+			var row = {};
+			$(this).find('input,select,textarea').each(function() {
+				if ($(this).is(':checkbox')) {
+					if ($(this).is(':checked')) {
+						row[$(this).attr('name')] = 1;
+					}
+					else {
+						row[$(this).attr('name')] = 0;
+					}
+				}if ($(this).is(':radio')) {
+					
+					if ($(this).is(':checked')) {
+						var result = $(this).attr('id');//.split('-');
+						if(result){
+						var name         = result;//[0];/* //(split - after name ) */
+						}			
+						row[name] = 1;
+					}
+					else {
+						var result = $(this).attr('id');//.split('-');
+						if(result){
+						var name         = result;//[0];/* //(split - after name ) */
+						}
+						row[name] = 0;
+					}
+				} 
+				else {
+					
+					row[$(this).attr('name')] = $(this).val();
+				}
+			});
+			//row['item_order'] = item_order;
+			//row['step_id'] = step_id;
+			item_order++;
+			
+			items.push(row);
+		});
+		
+		//alert(items);
+			data1.info = JSON.stringify(items);
+			data1.step_id = 4;
+			data1.applicant_id = $('#applicant_id').val();
+				$.post('/saveform/view', data1, function(result) {
+					
+						//	alert(result);
+						
+			 $("#formbox4").hide();
+			 $("#formbox5").show();
+							
+
+						}
+					);
+
+			 
+			 
+	});
+		
+/*
+ * Function to save second form
+ */	
+	$('.btn-save-form2').click(function() {
+		var data1 = {};
+		data1._token = $('#_token').val();
+		// data._token = $('#_token').val();
+		var step_id =  2;
+		var items = [];
+		var item_order = 1;
+	
+		
+
+		$('table tr.form2_first').each(function() {
+			var row = {};
+			$(this).find('input,select,textarea').each(function() {
+				if ($(this).is(':checkbox')) {
+					if ($(this).is(':checked')) {
+						row[$(this).attr('name')] = 1;
+					}
+					else {
+						row[$(this).attr('name')] = 0;
+					}
+				} 
+				else {
+					row[$(this).attr('name')] = $(this).val();
+				}
+			});
+			//row['item_order'] = item_order;
+			//row['step_id'] = step_id;
+			item_order++;
+			
+			items.push(row);
+		});
+			data1.info = JSON.stringify(items);
+			data1.step_id = 2;
+			data1.applicant_id = $('#applicant_id').val();
+				$.post('/saveform/view', data1, function(result) {
+					
+						//	alert(result);
+						 $("#formbox2").hide();
+						 $("#formbox3").show();
+							
+
+						}
+					);
+
+	});
+/*
+ * Function to save second form
+ */	
+
+ $('.btn-save-form7').click(function() {
+	 $("#formbox7").hide();
+	 $("#formbox8").show();
+	 
+ }); 
+ $('.btn-save-form8').click(function() {
+	 $("#formbox8").hide();
+	 $("#formbox9").show();
+	 
+ });
+ $('.btn-save-form9').click(function() {
+	 $("#formbox9").hide();
+	 $("#formbox10").show();
+	 
+ });$('.btn-save-form10').click(function() {
+	 $("#formbox10").hide();
+	 $("#formbox11").show();
+	 
+ });$('.btn-save-form11').click(function() {
+	 $("#formbox11").hide();
+	 $("#formbox12").show();
+	 
+ });
+$('.btn-save-form5').click(function() {
+		var data1 = {};
+     data1._token = $('#_token').val();
+   // data._token = $('#_token').val();
+
+	//	var step_id =  5;
+		
+		var items = [];
+		
+		var item_order = 1;
+	
+		
+
+		$('table tr.form5_first').each(function() {
+			var row = {};
+			$(this).find('input,select,textarea').each(function() {
+				if ($(this).is(':checkbox')) {
+					if ($(this).is(':checked')) {
+						row[$(this).attr('name')] = 1;
+					}
+					else {
+						row[$(this).attr('name')] = 0;
+					}
+				} 
+				else {
+					row[$(this).attr('name')] = $(this).val();
+				}
+			});
+			//row['item_order'] = item_order;
+			//row['step_id'] = step_id;
+			item_order++;
+			
+			items.push(row);
+		});
+			data1.info = JSON.stringify(items);
+			data1.step_id = 5;
+			data1.applicant_id = $('#applicant_id').val();
+	
+	
+				$.post('/saveform/view', data1, function(result) {
+						//	alert(result);
+						 $("#formbox1").hide();
+						 $("#formbox2").hide();
+						 $("#formbox3").hide();
+						 $("#formbox4").hide();
+						 $("#formbox5").hide();
+						 $("#formbox6").show();
+							
+
+						}
+					);
+
+	});	
+	/*
+ * Function to save sixth form
+ */
+
+	$('.btn-save-form6').click(function() {
+			
+			 	var data1 = {};
+		data1._token = $('#_token').val();
+		// data._token = $('#_token').val();
+		
+		var items = [];
+		var item_order = 1;
+	
+		
+
+		$('div.primary_applicant_sex').each(function() {
+			
+			var row = {};
+			$(this).find('input,select,textarea').each(function() {
+				if ($(this).is(':checkbox')) {
+					if ($(this).is(':checked')) {
+						row[$(this).attr('name')] = 1;
+					}
+					else {
+						row[$(this).attr('name')] = 0;
+					}
+				}if ($(this).is(':radio')) {
+					
+					if ($(this).is(':checked')) {
+						var result = $(this).attr('id');//.split('-');
+						if(result){
+						var name         = result;//[0];/* //(split - after name ) */
+						}			
+						row[name] = 1;
+					}
+					else {
+						var result = $(this).attr('id');//.split('-');
+						if(result){
+						var name         = result;//[0];/* //(split - after name ) */
+						}
+						row[name] = 0;
+					}
+				} 
+				else {
+					
+					row[$(this).attr('name')] = $(this).val();
+				}
+			});
+			//row['item_order'] = item_order;
+			//row['step_id'] = step_id;
+			item_order++;
+			
+			items.push(row);
+		});
+		
+		//alert(items);
+			data1.info = JSON.stringify(items);
+			data1.step_id = 6;
+			data1.applicant_id = $('#applicant_id').val();
+				$.post('/saveform/view', data1, function(result) {
+					
+						//	alert(result);
+						
+			 $("#formbox6").hide();
+			 $("#formbox7").show();
+							
+
+						}
+					);
+
+				 
+	});
+		
+	
+	$(function() {
+	var step_id	= 2 ;//$('#step_id').val() ;
+	
+   $('.formbox').hide();
+   $('#formbox'+step_id).show();
+});
+</script>
+@endsection

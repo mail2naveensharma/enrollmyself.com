@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<samlp:Response xmlns:samlp="urn:oasis:names:tc:SAML:2.0:protocol" ID="_d645f885-b6b9-4712-ba57-0b3cab551fab" Version="2.0" IssueInstant="2015-07-27T15:12:16.155Z">
+    <saml:Issuer xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion">Modglin Inc</saml:Issuer>
+    <samlp:Status>
+        <samlp:StatusCode Value="urn:oasis:names:tc:SAML:2.0:status:Success"/>
+        <samlp:StatusMessage>Success</samlp:StatusMessage>
+    </samlp:Status>
+    <saml:Assertion xmlns:saml="urn:oasis:names:tc:SAML:2.0:assertion" Version="2.0" IssueInstant="2015-07-27T15:12:16.141Z" Id="pfx94f02da6-1ea8-9ea2-73f9-abac916e03b3"><Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/2001/10/xml-exc-c14n#"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#rsa-sha1"/><Reference URI="#pfx94f02da6-1ea8-9ea2-73f9-abac916e03b3"><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>RHxqxQwYqbdFJfysYru7MnnVOks=</DigestValue></Reference></SignedInfo><SignatureValue>RaFp/PnJnwtDdYBroGBUlPxm2Adr97Bw/iMvvfdLGv36VwXlEdPm1jQuo6xNB/Hmn8G81c8FiIH/KD+Zl3L/sAZAd2KCvHHsL4KI7E5Lm+mXxE8btO8eYo+JIxFObjxZjF4wbnjek8NjSORdFqVA5QR4kvBuX16KpTrcr1VVQ3ZZQp8UIoQbQ8kSKbbDoqeGKup7C8JcEmWlQyUhDsRnz1RF3HhmPiYU/sWTf4iqZPx5noMx3eTqe9VaP42KtKhOIPquZ/blajtNJv9GbcV0s6cFxQGFD2alxuh1OJYAXWNoxVxNKodt8mY72K8O/ZX7sH/DSZ5q+e3Q9tae2RlxaA==</SignatureValue><KeyInfo><X509Data/></KeyInfo></Signature>
+        <saml:Issuer Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified">Modglin Inc</saml:Issuer>
+        <saml:Subject>
+            <saml:NameID Format="urn:oasis:names:tc:SAML:1.1:nameid-format:unspecified">04.MAA.FL*.813.229</saml:NameID>
+            <saml:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:sender-vouches">
+                <saml:NameID>CN=Modglin Inc, OU=Modglin Inc, O=Modglin Inc, L=Holiday, ST=Florida, C=US</saml:NameID>
+            </saml:SubjectConfirmation>
+        </saml:Subject>
+        <saml:Conditions NotBefore="2015-07-26T14:12:16.141Z" NotOnOrAfter="2015-07-29T16:12:16.141Z"/>
+        <saml:AttributeStatement>
+            <saml:Attribute Name="State Exchange Code" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+                <saml:AttributeValue>FL0</saml:AttributeValue>
+            </saml:Attribute>
+            <saml:Attribute Name="Partner Assigned Consumer ID" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+                <saml:AttributeValue>0001</saml:AttributeValue>
+            </saml:Attribute>
+            <saml:Attribute Name="User Type" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+                <saml:AttributeValue>Broker</saml:AttributeValue>
+            </saml:Attribute>
+            <saml:Attribute Name="Transfer Type" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+                <saml:AttributeValue>Direct Enrollment</saml:AttributeValue>
+            </saml:Attribute>
+            <saml:Attribute Name="Return URL" NameFormat="urn:oasis:names:tc:SAML:2.0:attrname-format:unspecified">
+                <saml:AttributeValue>http://dev.enrollmyself.com/saml/response.php</saml:AttributeValue>
+            </saml:Attribute>
+        </saml:AttributeStatement>
+        <saml:AuthnStatement AuthnInstant="2015-07-27T15:12:16.141Z">
+            <saml:SubjectLocality Address=""/>
+            <saml:AuthnContext>
+                <saml:AuthnContextClassRef>urn:oasis:names:tc:SAML:2.0:ac:classes:Password</saml:AuthnContextClassRef>
+            </saml:AuthnContext>
+        </saml:AuthnStatement>
+    </saml:Assertion>
+</samlp:Response>

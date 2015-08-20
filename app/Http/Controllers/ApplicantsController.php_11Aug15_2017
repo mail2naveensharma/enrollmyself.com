@@ -1,0 +1,53 @@
+<?php namespace App\Http\Controllers;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use DB;
+use Log;
+use App\FederalPovertyLevel;
+use App\HealthPlan;
+use App\PremiumModifier;
+
+
+use Illuminate\Http\Request;
+
+class ApplicantsController extends Controller {
+
+	/**
+	* @todo Might want to present something else to the user if the zipcode is not supported.
+	*/
+    
+    public function index(Request $request)
+    {
+		
+         $countyzip = DB::table('zipcounty')->where('zipcode', '=', $request->input('zip'))->first();
+         
+       	$result = DB::table('zipcodes')->where('ZipCode', $request->input('zip'))->first();
+
+    	if(!$result) {
+			if(($request->input('county_code')))return response()->json(array('cnt'=>0));
+
+    		Log::error('Failed to match zipcode: ' . $request->input('zip'));
+    		return redirect(route('home'));
+    	}
+		if(($request->input('county'))){
+			$result->County	=	$request->input('county');
+		}
+        // Check to see if we have at least ONE plan to offer here
+
+		$plan = HealthPlan::where('State', $result->StateCode)->where('County', $result->County)->where('PremiumAdultIndividualAge21', '!=', 0)->get();
+		$plan = $plan->toArray();
+
+		$carrier = HealthPlan::	select('IssuerName')->where('State', $result->StateCode)->where('County', $result->County)->where('PremiumAdultIndividualAge21', '!=', 0)->groupBy('IssuerName')->get();
+		$carrierArr = $carrier->toArray();
+		if(($request->input('county_code')))return response()->json(array('cnt'=>1));
+			
+		return view ('pages.applicants', ['zip' => 'Its Zip', 'carrierArr'=>$carrierArr]);
+    	
+    }
+
+	function saveForm(){
+	
+		return view ('pages.applicants', ['zip' => 'Its Zip', 'carrierArr'=>$carrierArr]);
+	}
+}

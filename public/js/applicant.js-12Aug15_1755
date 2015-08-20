@@ -1,0 +1,523 @@
+function showlist(id){
+	
+var myage	= $('#myself-age').val();
+if(myage == ''){
+	alert('Please Enter Details');
+}	
+	reloadjson();
+	setTimeout(showlistexec(id), 4000);
+	
+}	
+
+
+function reloadjson(){
+	var data = {};
+    var data1 = {};
+	data1.family = [];
+	data1.family1 = [];
+    data._token = $('#_token').val();
+    data1._token = $('#_token').val();
+    data.myself = {
+      age: $('#myself-age').val(),
+      tabacco: $('#myself-tabacco').is(":checked")
+    };
+    data.household = {
+      income: $('#income-annual').val(),
+      size: $('#income-household').val()
+    };
+    data.family = [];
+    $('#family-members .family-member').each(function() {
+      if($(this).find('.age').val() == '') {
+      return true;
+      }
+      data.family[data.family.length] = {
+        age: $(this).find('.age').val(),
+        gender: $(this).find('.gender').val(),
+        tabacco: $(this).find('.tabacco').is(':checked')
+      };
+    });
+    $.post('/plans/calc', data, function(result) {
+      if(typeof result.credit != "Undefined") {
+        $('#credit-result').text(accounting.formatMoney(result.credit, '$', 0));
+        $('#credit_value').val(accounting.formatMoney(result.credit, '$', 0));
+        $('#fpl').val(result.fpl);
+        $('#Chip').val(result.chip);
+        $('#Adult').val(result.adult);
+        $('#county').val(result.county);
+        $('#state').val(result.state);
+			//$("#show_plan").hide();	
+		
+		
+			
+      } else {
+        $('#credit-result').text('Fill Out Your Information To Find Out!');
+      }
+
+    }, "json");
+}	
+
+
+
+/* function to show div w.r.t data */
+function showlistexec(id){
+	//console.log('showlistexec');
+	if(id != 2000){
+		var page_num = id ;
+		
+	}else{
+id = 1;
+	}	
+	//reloadjson();
+ var data = {};
+    var data1 = {};
+	 data._token = $('#_token').val();
+    data1._token = $('#_token').val();
+	data1.family = [];
+	data1.family1 = [];
+$('#family-members .spouse-member').each(function() {
+				if($(this).find('.age').val() == '') {
+					return true;
+				}
+				data1.family[data1.family.length] = {
+					age: $(this).find('.age').val(),
+					gender: $(this).find('.gender').val(),
+					tabacco: $(this).find('.tabacco').is(':checked')
+				};
+			});
+			$('#family-members .child_member').each(function() {
+				if($(this).find('.age').val() == '') {
+					return true;
+				}
+				data1.family1[data1.family1.length] = {
+					age: $(this).find('.age').val(),
+					gender: $(this).find('.gender').val(),
+					tabacco: $(this).find('.tabacco').is(':checked')
+				};
+			});
+		data1.info = {
+			  ap: $('#ap').val(),
+			  zipcode: $('#myself-zipcode').val(),
+			  state:$('#state').val(),
+			  page : id,
+			
+			  age: $('#myself-age').val(),
+			  tabacco: $('#myself-tabacco').is(":checked"),
+			  income: $('#income-annual').val(),
+			  //size: $('#size-household').val(),
+			  fpl: $('#fpl').val(),
+			  Chip: $('#Chip').val(),
+			  Adult: $('#Adult').val(),
+			  credit: $('#credit_value').val(),
+			  metal: $('#metal').val(),
+			  carrier: $('#carrier').val(),
+			  network: $('#network').val(),
+			  county: $('#county').val(),
+			  sort: $('#menu1').val()
+			};
+		
+				$.post('/plans/view', data1, function(result) {
+						
+					//alert(result);
+						$("#show_plan").show();
+						$( "#show_plan" ).html(result);
+
+					}
+					);
+}	
+
+/*
+function to show and hide mailing address
+*/
+function openmailingaddress(RadioVal){
+		if(RadioVal == 1){
+			$( '#show_mailingaddresss' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+		}else{
+			$( '#show_mailingaddresss' ).show( 'slow', function() {
+				// Animation complete.
+			});
+		}
+			
+		// // var addresscheck	=	$('#mailingaddresssame').val();
+		// // alert(addresscheck);
+		// // if(addresscheck == 0){
+		// // $("#show_mailingaddresss").show();
+
+		// // }else{
+		// // $("#show_mailingaddresss").hide();
+		// // }
+
+}
+/*
+function to show next div
+*/
+function showApplicantinfodiv(){
+		$("#showApplicantinfodiv").show();
+		$("#info").hide();
+}
+
+/*
+ * Function to display applicant relative if applying for their health coverage
+ */
+function applyingForRelative(confirmation){
+	if(confirmation == 1){
+			$( '#applyingForRelatveContainer' ).show( 'slow', function() {
+				// Animation complete.
+			});
+		}else{
+			$( '#applyingForRelatveContainer' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+		}
+}
+
+function differentSSname(ssNameConfirmation){
+	if(ssNameConfirmation == 1){
+			$( '#differentSocialSecurityName' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+		}else{
+			$( '#differentSocialSecurityName' ).show( 'slow', function() {
+				// Animation complete.
+			});		
+		}
+}
+
+function CheckUSCitizenship(CitizenshipConfirmation){
+	if(CitizenshipConfirmation == 1){
+			$( '#ImmigrationEligibleStatus' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+		}else{
+			$( '#ImmigrationEligibleStatus' ).show( 'slow', function() {
+				// Animation complete.
+			});		
+		}
+}
+
+function CheckSEVISone(SEVISstatus){
+	if(SEVISstatus == 1){
+			$( '#SEVISoneYes' ).show( 'slow', function() {
+				// Animation complete.
+			});
+			$( '#SEVISoneNo' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+		}else{
+			$( '#SEVISoneNo' ).show( 'slow', function() {
+				// Animation complete.
+			});
+			$( '#SEVISoneYes' ).hide( 'slow', function() {
+				// Animation complete.
+			});	
+		}
+}
+
+function otherDocsTypes(ODTstatus){
+	if(ODTstatus == 1){
+			$( '#otherDocsTypes' ).hide( 'slow', function() {
+				// Animation complete.
+			});	
+		}else{
+			$( '#otherDocsTypes' ).show( 'slow', function() {
+				// Animation complete.
+			});
+		}
+}
+
+
+/*
+ * This question appears when Yes is selected for filing tax return.
+ */
+function ftrValue(ftrValue){
+	if(ftrValue == 1){
+			$( '#isMarriedDiv' ).show( 'slow', function() {
+				// Animation complete.
+			});	
+		}else{
+			$( '#isMarriedDiv' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+		}
+}
+
+
+/*
+ * This question appears when Yes is selected for filing tax return,
+ * and Yes to being married
+ */	
+function isMarriedValue(IMValue){
+	
+	var fileTaxReturnChecked = $("#fileTaxReturnYes0").is(':checked');
+	
+	if(IMValue == 1 && fileTaxReturnChecked){
+			$( '#fileJointTaxReturnDiv' ).show( 'slow', function() {
+				// Animation complete.
+			});	
+		}else{
+			$( '#fileJointTaxReturnDiv' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+		}
+}
+
+
+/*
+ * This will make #willClaimSeparateDependentsDiv appear
+ * when Yes is selected for filing tax return,
+ * and No to being married
+ */	
+function isMarriedValueUnmarried(IMValue){
+		
+	var fileTaxReturnUnmarriedChecked = $("#fileTaxReturnYes0Unmarried").is(':checked');
+	
+	if(IMValue == 0 && fileTaxReturnUnmarriedChecked){
+			$( '#willClaimSeparateDependentsDiv' ).show( 'slow', function() {
+				// Animation complete.
+			});	
+		}else{
+			$( '#willClaimSeparateDependentsDiv' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+		}
+}
+
+
+/*
+ * This will make #PAdependentsNameUnmarried appear and 
+ * hide the #willBeClaimedAsDependentDiv1 when Yes is selected for filing tax return,
+ * and No to being married, and Yes for Claiming Dependents.
+ * IF Yes is selected for filing tax return,
+ * No to being married and No for Claiming Dependents,
+ * #PAdependentsNameUnmarried will be hidden and 
+ * #willBeClaimedAsDependentDiv1 will be shown.
+ */	
+function showEitherOneOfBelow(DependentValue){
+	
+	var fileTaxReturnUnmarriedChecked = $("#fileTaxReturnYes0Unmarried").is(':checked'); // yes
+
+	var isMarriedNo0UnmarriedChecked = $("#isMarriedNo0Unmarried").is(':checked'); // no
+	
+	if(DependentValue == 1 && fileTaxReturnUnmarriedChecked && isMarriedNo0UnmarriedChecked){
+			$( '#PAdependentsNameUnmarried' ).show( 'slow', function() {
+				// Animation complete.
+			});
+			$( '#willBeClaimedAsDependentDiv1' ).hide( 'slow', function() {
+				// Animation complete.
+			});	
+	}else if(DependentValue == 0 && fileTaxReturnUnmarriedChecked && isMarriedNo0UnmarriedChecked){
+			$( '#PAdependentsNameUnmarried' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+			$( '#willBeClaimedAsDependentDiv1' ).show( 'slow', function() {
+				// Animation complete.
+			});
+	}
+}
+
+/*
+ *	This question appears when Yes is selected for filing tax return,
+ *  and Yes to being married, and Yes to filing jointly with spouse.
+ */	
+function fileJointTaxReturnValue(fjtValue){
+
+	var fileTaxReturnChecked = $("#fileTaxReturnYes0").is(':checked');
+
+	var fileJointTaxReturnChecked = $("#fileJointTaxReturnYes0").is(':checked');
+
+	if(fjtValue == 1 && fileTaxReturnChecked && fileJointTaxReturnChecked){
+			$( '#taxStatusSpouse' ).show( 'slow', function() {
+				// Animation complete.
+			});	
+		}else{
+			$( '#taxStatusSpouse' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+		}
+}
+
+
+
+/*
+ * This will make #fileJointTaxReturnMarriedDiv appear
+ * when Yes is selected for filing tax return - fileTaxReturnYes0Married and make #liveWithSpouseDiv appear
+ * when No is selected for filing tax return - fileTaxReturnYes0Married
+ */	
+function fileJointTaxReturnMarriedDiv(fjtValue){
+	
+	if(fjtValue == 1){
+			$( '#fileJointTaxReturnMarriedDiv' ).show( 'slow', function() {
+				// Animation complete.
+			});
+			$( '#liveWithSpouseDiv' ).hide( 'slow', function() {
+				// Animation complete.
+			});
+	}else{
+		$( '#fileJointTaxReturnMarriedDiv' ).hide( 'slow', function() {
+			// Animation complete.
+		});
+		$( '#liveWithSpouseDiv' ).show( 'slow', function() {
+			// Animation complete.
+		});
+	}
+}
+
+
+function toggleImmigrationDocs(immigrationStatus){
+	$( "#immigrationDocs" ).toggle( "slow", function() {
+    // Animation complete.
+	});
+	$( "#fieldAsperDocType" ).toggle( "slow", function() {
+    // Animation complete.
+	});
+}
+
+
+// /*
+ // * Function to clone applicant relative
+ // */
+// function cloneApplicant(){
+	// $( "#second-applicant-clone" ).clone().appendTo( "#applyingForRelatveContainer" );
+// }
+
+/*
+ * Function to clone applicant relative
+ */
+var cloneCount = 1;
+function cloneApplicant(){
+
+	 var mainDiv = $('#second-applicant-clone')
+          .clone()
+          .attr('id', 'second-applicant-clone'+ cloneCount++)
+          .insertAfter($('[id^=second-applicant-clone]:last'));
+
+}
+
+
+/*
+ * function to get field types for non us citizens 
+ * based on selected doc required
+ * parameter #DocumentType0 value
+ * returns input fields in <td> to populate the <tr id="fieldAsperDocType">
+ */
+function getDocTypefields(docTypeVal){
+		
+		switch(docTypeVal) {
+		case '1':
+			$('#fieldAsperDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">Alien number (optional)</span><br/><input type="text" name="AlienNumber0" id="AlienNumber0" /></div><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">Card number (optional)</span><br/><input type="text" name="CardNumber0" id="CardNumber0" /></div></td>';
+
+			$('#fieldAsperDocType').html(theHtml);
+			break;
+		case '2':
+			$('#fieldAsperDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers"><span class="table-headers">Alien number (optional)</span><br/><input type="text" name="AlienNumber0" id="AlienNumber0" /></div></td>';
+
+			$('#fieldAsperDocType').html(theHtml);
+			break;
+		case '3':
+			$('#fieldAsperDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">Alien number (optional)</span><br/><input type="text" name="AlienNumber0" id="AlienNumber0" /></div><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">Passport number (optional)</span><br/><input type="text" name="PassportNumber0" id="PassportNumber0" /></div><div style="width:45%;margin:2% 5% 0 0; float:left;"><span class="table-headers">Country of issuance (optional)</span><br/><input type="text" name="CountryOfIssuance0" id="CountryOfIssuance0" /></div></td>';
+
+			$('#fieldAsperDocType').html(theHtml);
+			break;
+		case '4':
+			$('#fieldAsperDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">Alien number (optional)</span><br/><input type="text" name="AlienNumber0" id="AlienNumber0" /></div><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">Card number (optional)</span><br/><input type="text" name="PassportNumber0" id="PassportNumber0" /></div><div style="width:45%;margin:2% 5% 0 0; float:left;"><span class="table-headers">Document expiration date (optional)</span><br/><input type="text" name="DocExpDate0" id="DocExpDate0" /></div><div style="float:left; width:45%;margin:2% 5% 0 0;"><span class="table-headers">Category code (optional)</span><br/><input type="text" name="CategoryCode0" id="CategoryCode0" /></div></td>';
+
+			$('#fieldAsperDocType').html(theHtml);
+			break;
+		case '5':
+			$('#fieldAsperDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">I-94 number (optional)</span><br/><input type="text" name="I94Number0" id="I94Number0" /></div></td>';
+
+			$('#fieldAsperDocType').html(theHtml);
+			break;
+		default:
+			$('#fieldAsperDocType').hide('slow');
+		}
+}
+
+/*
+ * function to get field types for non us citizens 
+ * based on selected doc required
+ * parameter #DocumentType0 value
+ * returns input fields in <td> to populate the <tr id="fieldAsperDocType">
+ */
+function getArrDepDocTypefields(docTypeVal){
+		
+		switch(docTypeVal) {
+		case '1':
+			$('#fieldAsPerArrDepDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">I-94 number (optional)</span><br/><input type="text" name="I94Number0" id="I94Number0" /></div><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">Passport number (optional)</span><br/><input type="text" name="PassportNumber0" id="PassportNumber0" /></div><div style="width:45%;margin:2% 5% 0 0; float:left;"><span class="table-headers">Document expiration date (optional)</span><br/><input type="text" name="DocExpDate0" id="DocExpDate0" /></div><div style="float:left; width:45%;margin:2% 5% 0 0;"><span class="table-headers">Country of issuance (optional)</span><br/><input type="text" name="CountryOfIssuance0" id="CountryOfIssuance0" /></div></td>';
+
+			$('#fieldAsPerArrDepDocType').html(theHtml);
+			$('#fieldAsPerNotificationOfActionDocType').hide('slow');
+			break;
+		case '2':
+			$('#fieldAsPerArrDepDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">Passport number (optional)</span><br/><input type="text" name="PassportNumber0" id="PassportNumber0" /></div><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">Passport expiration date (optional)</span><br/><input type="text" name="DocExpDate0" id="DocExpDate0" /></div><div style="width:45%;margin:2% 5% 0 0; float:left;"><span class="table-headers">Country of issuance (optional)</span><br/><input type="text" name="CountryOfIssuance0" id="CountryOfIssuance0" /></div></td>';
+
+			$('#fieldAsPerArrDepDocType').html(theHtml);
+			$('#fieldAsPerNotificationOfActionDocType').hide('slow');
+			break;
+		case '3':
+			$('#fieldAsPerArrDepDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">Alien number (optional)</span><br/><input type="text" name="AlienNumber0" id="AlienNumber0" /></div></td>';
+
+			$('#fieldAsPerArrDepDocType').html(theHtml);
+			$('#fieldAsPerNotificationOfActionDocType').hide('slow');
+			break;
+		case '4':
+			$('#fieldAsPerArrDepDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">Alien number (optional)</span><br/><input type="text" name="AlienNumber0" id="AlienNumber0" /></div></td>';
+
+			$('#fieldAsPerArrDepDocType').html(theHtml);
+			$('#fieldAsPerNotificationOfActionDocType').hide('slow');
+			break;
+		case '5':
+			$('#fieldAsPerArrDepDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">SEVIS ID</span><br/><input type="text" name="SevisID0" id="SevisID0" /></div></td>';
+
+			$('#fieldAsPerArrDepDocType').html(theHtml);
+			$('#fieldAsPerNotificationOfActionDocType').hide('slow');
+			break;
+		case '6':
+			$('#fieldAsPerArrDepDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">SEVIS ID</span><br/><input type="text" name="SevisID0" id="SevisID0" /></div></td>';
+
+			$('#fieldAsPerArrDepDocType').html(theHtml);
+			$('#fieldAsPerNotificationOfActionDocType').hide('slow');
+			break;
+		case '7':
+			$('#fieldAsPerArrDepDocType').show('slow');
+			var theHtml = '<td><p>Enter one of these numbers (optional)</p><div style="float:left; width:45%;margin-right:5%;"><input style="width: auto;" type="radio" name="AlienNumberRadio0" onclick="enterOneOfTheseNumers(this.value)" id="AlienNumberRadio0" value="1"/> Alien number<br/><input style="width: auto;" type="radio" name="I94Radio0" id="I94Radio0" value="2" onclick="enterOneOfTheseNumers(this.value)"/> I-94<br/><input style="width: auto;" type="radio" name="otherDoc" id="otherDoc" value="0" onclick="enterOneOfTheseNumers(this.value)"/> Other document types and statuses</div></td>';
+
+			$('#fieldAsPerArrDepDocType').html(theHtml);
+			$('#fieldAsPerNotificationOfActionDocType').hide('slow');
+			break;
+		default:
+			$('#fieldAsPerArrDepDocType').hide('slow');
+			$('#fieldAsPerNotificationOfActionDocType').hide('slow');
+		}
+}
+
+function enterOneOfTheseNumers(docTypeVal){
+		switch(docTypeVal) {
+		case '1':
+			$('#fieldAsPerNotificationOfActionDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">Alien number (optional)</span><br/><input type="text" name="AlienNumber0" id="AlienNumber0" /></div></td>';
+
+			$('#fieldAsPerNotificationOfActionDocType').html(theHtml);
+			break;
+		case '2':
+			$('#fieldAsPerNotificationOfActionDocType').show('slow');
+			var theHtml = '<td><div style="float:left; width:45%;margin-right:5%;"><span class="table-headers">I-94 number (optional)</span><br/><input type="text" name="I94Number0" id="I94Number0" /></div></div></td>';
+
+			$('#fieldAsPerNotificationOfActionDocType').html(theHtml);
+			break;
+		default:
+			$('#fieldAsPerNotificationOfActionDocType').hide('slow');
+		}
+}

@@ -1,0 +1,1031 @@
+@extends('home')
+
+@section('content')
+
+<div class="planbody"/>
+     <div class="planbodywrapper"/>
+
+<!---------------WHO NEEDS COVERAGE FORM---------------->
+
+<div class="formbox" id="formbox1">
+	<div class="info-container">			
+		<table class="contactName" id="contactName">
+			<tbody>
+				<tr>
+					<td>
+						<input type="hidden" name="applicant_id" id="applicant_id" value="1" />
+						<span class="table-headers">First Name</span><br/>	
+						<input type="text" name="contactFirstName" id="contactFirstName" />
+					</td>
+					<td>
+						<span class="table-headers">Middle Name</span><br/>	
+						<input type="text" name="contactMiddleName" id="contactMiddleName" />
+					</td>
+					<td>
+						<span class="table-headers">Last Name</span><br/>
+						<input type="text" name="contactLastName" id="contactLastName" />
+					</td>
+					<td>
+						<span class="table-headers">Suffix</span><br/>
+						<input type="text" name="contactSuffix" id="contactSuffix" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<div class="give-margin-10-20">
+			<h4>Home Address: </h4>
+		</div>
+		<table class="homeAddress" id="homeAddress">
+			<tbody>
+				<tr id="field_'.$step_id.'" class = "field_'.$step_id.'" >
+					<td colspan="2">
+						<input type="hidden" name="applicant_id" id="applicant_id" value="1" />
+						<span class="table-headers">Street Address</span><br/>
+						<input type="text" name="contactAddressStreetName1" id = "contactAddressStreetName1" />
+					</td>
+					<td>
+						<span class="table-headers">APT/STE #</span><br/>
+						<input type="text" name="contactAddressStreetName2" id = "contactAddressStreetName2" />
+					</td>	
+				</tr>
+				<tr>
+					<td>
+						<span class="table-headers">City</span><br/>
+						<input type="text" name="contactAddressCity" id = "contactAddressCity" />
+					</td>
+					<td>
+						<span class="table-headers">State</span><br/>
+					 	<select class="" onchange="" id="contactAddressState" name="contactAddressState" data-toggle="dropdown">
+							<option value="">Select...</option>
+							<option value="AL">Alabama</option> 
+							<option value="AK">Alaska</option> 
+							<option value="AZ">Arizona</option> 
+							<option value="AR">Arkansas</option> 
+							<option value="CA">California</option> 
+							<option value="CO">Colorado</option> 
+							<option value="CT">Connecticut</option> 
+						</select>
+					</td>
+					<td>
+						<span class="table-headers">Zip</span><br/>	
+						<input type="text" name="contactAddressZip" id = "contactAddressZip" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="give-margin-10-20">
+			<p>Is your mailing address same as home?</p>
+			 <input type="radio" name="contactMailingAddressSame" id="contactMailingAddressSameYes" onclick='openmailingaddress(this.value)' value="1"/> Yes<br/>
+			<input type="radio" name="contactMailingAddressSame" id="contactMailingAddressSameNo" onclick='openmailingaddress(this.value)' value="0"/> No
+		</div>       
+		<div style="display:none" id="show_mailingaddresss">
+			<div class="give-margin-15-20">
+				<h4>Mailing Address: </h4>
+			</div>
+			<table class="mailingAddress" id="mailingAddress" >
+				<tbody>
+					<tr id="field_'.$step_id.'" class = "field_'.$step_id.'" >
+						<td colspan="2">
+							<input type="hidden" name="applicant_id" id = "applicant_id" value = "1" />
+							<span class="table-headers">Street Address</span><br/>	
+							<input type="text" name="contactMailingAddressStreetName1" id = "contactMailingAddressStreetName1" />
+						</td>
+						<td>
+							<span class="table-headers">APT/STE #</span><br/>
+							<input type="text" name="contactMailingAddressStreetName2" id = "contactMailingAddressStreetName2" />
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<span class="table-headers">City</span><br/>	
+							<input type="text" name="contactMailingAddressCity" id = "contactMailingAddressCity" />
+						</td>
+						<td>
+							<span class="table-headers">State</span><br/>
+							<select class="" onchange="" id="contactMailingAddressState" name="contactMailingAddressState" data-toggle="dropdown">
+								<option value="">Select...</option>
+								<option value="AL">Alabama</option> 
+								<option value="AK">Alaska</option> 
+								<option value="AZ">Arizona</option> 
+								<option value="AR">Arkansas</option> 
+								<option value="CA">California</option> 
+								<option value="CO">Colorado</option> 
+								<option value="CT">Connecticut</option>
+							</select>
+						</td>
+						<td>
+							<span class="table-headers">Zip</span><br/>
+							<input type="text" name="contactMailingAddressZip" id = "contactMailingAddressZip" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<table class="contactMethods">
+			<tr>
+				<td>
+					<span class="table-headers">Phone Number xxx-xxx-xxxx</span><br/>
+					<input type="text" name="contactPhone" id="contactPhone" />
+				</td>
+				<td>
+					<span class="table-headers">Extension (Optional)</span><br/>
+					<input type="text" name="contactPhoneExt" id="contactPhoneExt" />
+				</td>
+				<td>
+					<span class="table-headers">Phone Type (Optional)</span><br/>
+					<input type="text" name="contactPhoneTypePrimary" id="contactPhoneTypePrimary" />
+				</td>
+			</tr>
+		</table>
+		<table class="prefferedSpokenWritten">
+			<tr>
+				<td>
+					<span class="table-headers">Preferred Spoken Language (optional)</span><br/>
+					<select name="contactSpokenLanguage" id="contactSpokenLanguage" >
+						<option selected value="1">English</option>
+						<option value="2">Spanish</option>
+						<option value="3">Vietnamese</option>
+						<option value="4">Tagalog</option>
+						<option value="5">Russian</option>
+						<option value="6">Portuguese</option>
+						<option value="7">Arabic</option>
+						<option value="8">Chinese</option>
+						<option value="9">French</option>
+						<option value="10">French Creole</option>
+						<option value="11">German</option>
+						<option value="12">Gujarati</option>
+						<option value="13">Hindi</option>
+						<option value="14">Korean</option>
+						<option value="15">Polish</option>
+						<option value="16">Urdu</option>
+						<option value="17">Other</option>
+					</select>
+				</td>
+				<td>
+					<span class="table-headers">Preferred Written Language (optional)</span><br/>
+					<select name="contactWrittenLanguage" id="contactWrittenLanguage" >
+						<option selected value="1">English</option>
+						<option value="2">Spanish</option>
+						<option value="3">Vietnamese</option>
+						<option value="4">Tagalog</option>
+						<option value="5">Russian</option>
+						<option value="6">Portuguese</option>
+						<option value="7">Arabic</option>
+						<option value="8">Chinese</option>
+						<option value="9">French</option>
+						<option value="10">French Creole</option>
+						<option value="11">German</option>
+						<option value="12">Gujarati</option>
+						<option value="13">Hindi</option>
+						<option value="14">Korean</option>
+						<option value="15">Polish</option>
+						<option value="16">Urdu</option>
+						<option value="17">Other</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		
+		<div class="give-margin-15-20">
+			<p>Do you want to read your notices about your application on this website?</p>
+			 <input type="radio" name = "noticesOnlineNoRadio" id  = "noticesOnlineNoRadio" value= "1" /> Yes
+		</div>
+			
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>
+</div>
+
+<!---------------------------------------------------------------------------------->
+<?php /*
+<div id = "showApplicantionfodiv" style ="display:none">
+	<table class="" id="">
+       <thead>
+        <tr>
+			<th>first name</th>
+			<th>Middle (optional)</th>
+			<th>Last Name</th>
+			<th>Suffix</th>
+			<th>date of birth</th>
+			<th>relationship to primary applicant</th>
+        </tr>
+		<tr>
+
+		</tr>
+       </thead>
+			   <tbody>
+				<tr id="field_'.$step_id.'" class = "field_'.$step_id.'" >
+				
+				 <input type="hidden" name="applicant_id" id = "applicant_id" value = "1">
+			
+				 <td><input type="text" name="addApplicantFirstName" id = "addApplicantFirstName"></td>
+				 <td><input type="text" name="addApplicantMiddleName" id = "addApplicantMiddleName"></td>
+				 <td><input type="text" name="addApplicantLastName" id = "addApplicantLastName"></td>
+				 <td><select class="" type="selectbox"  onchange="" id="addApplicantSuffix" name = "addApplicantSuffix" data-toggle="dropdown">
+							<option value="1">Network </option>
+							<option  value="2">All </option>
+							<option value="3">PPO </option>
+							<option  value="4">EPO </option>
+							<option value="5">HMO </option>
+							<option  value="6">POS </option>
+					</select>
+
+				 </td>
+				<td><input type="text" name="addApplicantDateOfBirth1" id = "addApplicantDateOfBirth1"></td>
+			 
+				
+				<td><input type="text" name="addApplicantRelationship1" id = "addApplicantRelationship1"></td>
+				</tr>
+				<tr>
+					<td>
+					<!--<input type ="button" value = "submit" class = "btn-save-test"  id ="btn-save-test"/>-->
+					</td>
+				</tr>
+			   
+				</tbody>
+        
+       
+	
+			</table>
+
+	</div>
+
+*/ ?>
+</div>
+<div class="clear"/></div>
+
+<!-- Security Question Section -->
+<div class="formbox" id="formbox2">
+	<div class="info-container">
+		<table class="questionsTable1" id="questionsTable1">
+			<tbody>
+				<tr>
+					<td><span class="table-headers">Security Questions: </span></td>
+				</tr>
+				<tr>
+					<td>
+						<input type="hidden" name="applicant_id" id="applicant_id" value="1" />
+						<select name="navQnsQn1" id="navQnsQn1" >
+						<option selected value="1">In what city or town was your first job?</option>
+						<option value="2">Question 2</option>
+						<option value="3">Question 3</option>
+						<option value="4">Question 4</option>
+						<option value="5">Question 5</option>
+						<option value="6">Question 6</option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<input type="text" name="navQnsAns1" id="navQnsAns1" placeholder="hometown" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>
+	</div>
+</div>
+
+<div class="formbox" id="formbox3">
+	<div class="info-container">
+		<div class="give-margin-15-20">
+			<p>Do you want to find out if you can get help paying for coverage?</p>
+				<input type="radio" checked name="healthCoverageYes
+" id="healthCoverageYes" value="1"/> Yes<br/>
+				<input type="radio" name="healthCoverageNo
+" id="healthCoverageNo" value="0"/> No<br/>
+				<input type="radio" name="healthCoverageIDK" id="healthCoverageIDK" value="0"/> IDK
+		</div>
+		
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>
+	</div>
+</div>
+
+<div class="formbox" id="formbox4">
+	<div class="info-container">
+		<div class="give-margin-15-20">
+			<p>Who are you applying for health coverage for?</p>
+				<input type="radio" checked name="faSelf" id="faSelf" value="1"/> (your name only)<br/>
+				<input type="radio" name="faSelfAndfamily" id="healthCoverageNo" value="0"/> (your name and other family members)<br/>
+				<input type="radio" name="faFamily" id="faFamily" value="0"/> (other family members not, your name)
+		</div>
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>	
+	</div>
+</div>
+
+
+<div class="formbox" id="formbox5">
+	<div class="info-container" id="relatives-container">
+
+		<div class="give-margin-15-20">
+			<p>You are applying for health coverage for these people?</p>
+				<input type="radio" name="healthCoverageForPeople" id="healthCoverageForPeople" value="1" onclick="applyingForRelative(this.value)" /> Yes<br/>
+				<input type="radio" name="healthCoverageForPeople" id="healthCoverageForPeople" value="0" onclick="applyingForRelative(this.value)" /> No
+		</div>
+		<div id="applyingForRelatveContainer" style="display:none;">
+			<div id="second-applicant-clone">
+				<div class="give-margin-10-20">
+					<h4>Second Applicant: </h4>
+				</div>
+				<table class="addApplicant" id="addApplicant">
+					<tbody>
+						<tr>
+							<td>
+								<input type="hidden" name="applicant_id" id="applicant_id" value="1" />
+								<span class="table-headers">First Name</span><br/>	
+								<input type="text" name="addApplicantFirstName1" id="addApplicantFirstName1" />
+							</td>
+							<td>
+								<span class="table-headers">Middle Name</span><br/>	
+								<input type="text" name="addApplicantMiddleName1" id="addApplicantMiddleName1" />
+							</td>
+							<td>
+								<span class="table-headers">Last Name</span><br/>
+								<input type="text" name="addApplicantMiddleName1" id="addApplicantMiddleName1" />
+							</td>
+							<td>
+								<span class="table-headers">Suffix</span><br/>
+								<input type="text" name="addApplicantLastName1" id="addApplicantLastName1" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span class="table-headers">Date Of Birth</span><br/>
+								<input type="text" name="addApplicantSuffix1" id="addApplicantSuffix1" />	
+							</td>
+							<td>
+							</td>
+							<td colspan="2">
+								<span class="table-headers">Relationship to primary applicant</span><br/>
+								<input type="text" name="contactSuffix" id="contactSuffix" />	
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+				
+			<div class="give-margin-10-20">
+				<button type="button" id="addFamilyPerson" onclick="cloneApplicant()">Add Person +</button>
+			</div>
+		</div>
+		
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>
+	</div>
+</div>
+
+<div class="formbox" id="formbox6">
+	<div class="info-container">
+		<div class="give-margin-15-20">
+			<p>What is (Primary Applicant's) sex?</p>
+				<input type="radio" name="fahSexMale0" id="faSelf" value="1"/> Male<br/>
+				<input type="radio" name="fahSexFemale0" id="healthCoverageNo" value="0"/> Female
+		</div>
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>	
+	</div>
+</div>
+
+<div class="formbox" id="formbox7">
+	<div class="info-container">
+		<table class="contactName" id="contactName">
+			<tbody>
+				<tr>
+					<td>
+						<input type="hidden" name="applicant_id" id="applicant_id" value="1" />
+						<span class="table-headers">Enter (Primary Applicant's) Social Security number </span><br/>	
+						<input type="text" name="fahSSNTextboxForApplicant0" id="fahSSNTextboxForApplicant0" />
+					</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div class="give-margin-15-20">
+			<p>Is (Primary Applicant's Name) the same name that appears on his Social Security card? </p>
+				<input type="radio" name="fahSSNSameNameYes0" onclick="differentSSname(this.value)" id="fahSSNSameNameYes0" value="1"/> Yes<br/>
+				<input type="radio" name="fahSSNSameNameNo0" id="fahSSNSameNameNo0" value="0" onclick="differentSSname(this.value)"/> No
+		</div>
+
+		<div id="differentSocialSecurityName" style="display:none;">
+			<table class="addApplicant" id="addApplicant">
+				<tbody>
+					<tr>
+						<td>
+							<input type="hidden" name="applicant_id" id="applicant_id" value="1" />
+							<span class="table-headers">First Name</span><br/>	
+							<input type="text" name="fahSSNFirstNameOnCard0" id="fahSSNFirstNameOnCard0" />
+						</td>
+						<td>
+							<span class="table-headers">Middle Name <Span style="font-size:85%;">(Optional)</span></span><br/>	
+							<input type="text" name="fahSSNMiddleNameOnCard0" id="fahSSNMiddleNameOnCard0" />
+						</td>
+						<td>
+							<span class="table-headers">Last Name</span><br/>
+							<input type="text" name="fahSSNLastNameOnCard0" id="fahSSNLastNameOnCard0" />
+						</td>
+						<td>
+							<span class="table-headers">Suffix (Optional)</span><br/>
+							<input type="text" name="fahSSNSuffixOnCard0" id="fahSSNSuffixOnCard0" />
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>	
+	</div>
+</div>
+
+
+<div class="formbox" id="formbox8">
+	<div class="info-container">
+		<div class="give-margin-15-20">
+			<p>Is (Primary Applicant) a U.S. citizen or U.S. national? </p>
+				<input type="radio" name="fahImmigrationIsCitizenRadioYes0" onclick="CheckUSCitizenship(this.value)" id="fahImmigrationIsCitizenRadioYes0" value="1"/> Yes<br/>
+				<input type="radio" name="fahImmigrationIsCitizenRadioNo0" id="fahImmigrationIsCitizenRadioNo0" value="0" onclick="CheckUSCitizenship(this.value)"/> No
+		</div>
+
+		<div class="give-margin-15-20" id="ImmigrationEligibleStatus" style="display:none;">
+			<p>Check here if (Primary Applicant) has eligible immigration status</p>
+				<input type="checkbox" name="fahImmigrationEligibleStatusCheckbox0" onclick="toggleImmigrationDocs(this.value)" id="fahImmigrationIsCitizenRadioYes0" value="1"/>
+		</div>
+
+		<div id="immigrationDocs" style="display:none;">
+			<table class="docsType">
+				<tr>
+					<td>
+						<span class="table-headers">Document type (Select one)</span><br/>
+						<select name="DocumentType0" id="DocumentType0" onchange="getDocTypefields(this.value)" >
+							<option value="">Select...</option>
+							<option value="1">Permanent Resident Card ("Green Card", I-551)</option>
+							<option value="2">Temporary I-551 Stamp (on Passport or I-94, I-94A)</option>
+							<option value="3">Machine Readable Immigrant Visa (with temporary I-551 language)</option>
+							<option value="4">Employment Authorization Card (EAD, I-766)</option>
+							<option value="5">Arrival/Departure Record (I-94, I-94A)</option>
+						</select>
+					</td>
+				</tr>
+				<tr id="fieldAsperDocType" style="display:none;">
+					<!-- to be loaded with js -->
+				</tr>		
+		</table>
+		</div>
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>	
+	</div>
+</div>
+
+<?php /*
+<div class="formbox" id="formbox9">
+	<div class="info-container">
+		
+		<div class="give-margin-15-20">
+			<p>Do you have a Student and Exchange Visitor Information System (SEVIS) ID?optional</p>
+				<input type="radio" name="fahSEVISoneRadioYes0" onclick="CheckSEVISone(this.value)" id="fahSEVISoneRadioYes0" value="1"/> Yes<br/>
+				<input type="radio" name="fahSEVISoneRadioNo0" id="fahSEVISoneRadioNo0" value="0" onclick="CheckSEVISone(this.value)"/> No
+		</div>
+
+		<div class="give-margin-15-20" id="SEVISoneYes" style="display:none;">
+				<span class="table-headers">SEVIS ID</span><br/> 
+				<input type="text" name="SevisID0" id="SevisID0"/>
+		</div>
+
+		<div id="SEVISoneNo" style="display:none;">
+			<table class="docsType">
+				<tr>
+					<td>
+						<span class="table-headers">Document type (Select one)</span><br/>
+						<select name="ArrDepDocumentType0" id="ArrDepDocumentType0" onchange="getArrDepDocTypefields(this.value)">
+							<option value="">Select...</option>
+							<option value="1">Arrival/Departure Record in foreign passport (I-94)</option>
+						</select>
+					</td>
+				</tr>
+				<tr id="fieldAsPerArrDepDocType">
+					<!-- to be loaded dynamically through js -->
+				</tr>
+			</table>
+		</div>
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>	
+	</div>
+</div>
+*/ ?>
+
+<div class="formbox" id="formbox9">
+	<div class="info-container">
+		
+		<div class="give-margin-15-20">
+			<p>Do you have a Student and Exchange Visitor Information System (SEVIS) ID?optional</p>
+				<input type="radio" name="fahSEVISoneRadioYes0" onclick="CheckSEVISone(this.value)" id="fahSEVISoneRadioYes0" value="1"/> Yes<br/>
+				<input type="radio" name="fahSEVISoneRadioNo0" id="fahSEVISoneRadioNo0" value="0" onclick="CheckSEVISone(this.value)"/> No
+		</div>
+
+		<div class="give-margin-15-20" id="SEVISoneYes" style="display:none;">
+				<span class="table-headers">SEVIS ID</span><br/> 
+				<input type="text" name="SevisID0" id="SevisID0"/>
+		</div>
+
+		<div id="SEVISoneNo" style="display:none;">
+			<table class="SEVISdocsType">
+				<tr>
+					<td>
+						<span class="table-headers">Document type (Select one)</span><br/>
+						<select name="ArrDepDocumentType0" id="ArrDepDocumentType0" onchange="getArrDepDocTypefields(this.value)">
+							<option value="">Select...</option>
+							<option value="1">Arrival/Departure Record in foreign passport (I-94)</option>
+							<option value="2">Foreign Passport</option>
+							<option value="3">Reentry Permit (I-327)</option>
+							<option value="4">Refugee Travel Document (I-571)</option>
+							<option value="5">Certificate of Eligibility for Non-Immigrant (F-1) Student Status (I-20)</option>
+							<option value="6">Certificate of Eligibility for Exchange Visitor (J-1) Status (DS2019)</option>
+							<option value="7">Notice of Action (I-797)</option>
+						</select>
+					</td>
+				</tr>
+				<tr id="fieldAsPerArrDepDocType">
+					<!-- to be loaded dynamically through js -->
+				</tr>
+				<tr id="fieldAsPerNotificationOfActionDocType">
+					<!-- to be loaded dynamically through js -->
+				</tr>
+			</table>
+		</div>
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>	
+	</div>
+</div>
+
+<div class="formbox" id="formbox10">
+	<div class="info-container">
+		
+		<div class="give-margin-15-20">
+			<p>Is (Primary Applicant Name) the same name that appears on his document?</p>
+				<input type="radio" name="sameNameImmigrationYes0" onclick="otherDocsTypes(this.value)" id="sameNameImmigrationYes0" value="1"/> Yes<br/>
+				<input type="radio" name="sameNameImmigrationNo0" id="sameNameImmigrationNo0" value="0" onclick="otherDocsTypes(this.value)"/> No
+		</div>
+
+		<div id="otherDocsTypes" style="display:none;">
+			<table class="otherDocsTypesName">
+				<tr>
+					<td colspan="4">
+						Enter the same name as shown (Primary Applicant's) document. 
+					</td>
+				<tr>
+					<td>
+						<input type="hidden" name="applicant_id" id="applicant_id" value="1" />
+						<span class="table-headers">First Name</span><br/>	
+						<input type="text" name="diffNameImmigrantFirstName0" id="diffNameImmigrantFirstName0" />
+					</td>
+					<td>
+						<span class="table-headers">Middle Name</span><br/>	
+						<input type="text" name="diffNameImmigrantMiddleName0" id="diffNameImmigrantMiddleName0" />
+					</td>
+					<td>
+						<span class="table-headers">Last Name</span><br/>
+						<input type="text" name="diffNameImmigrantLastName0" id="diffNameImmigrantLastName0" />
+					</td>
+					<td>
+						<span class="table-headers">Suffix</span><br/>
+						<input type="text" name="diffNameImmigrantSuffix0" id="diffNameImmigrantSuffix0" />
+					</td>
+				</tr>
+			</table>
+			
+			<table class="otherImmigrationInfo">
+				<tr>
+					<td>
+						 <input type="checkbox" name="otherImmigrationInfoCheckbox10" value="1"> Document indicating member of a federally recognized Indian tribe or American Indian born in Canada
+					</td>
+				</tr>
+				<tr>
+					<td>
+						 <input type="checkbox" name="otherImmigrationInfoCheckbox20" value="1"> Certification from U.S. Department of Health and Human Services (HHS) Office of Refugee Resettlement (ORR)
+					</td>
+				</tr>
+				<tr>
+					<td>
+						 <input type="checkbox" name="otherImmigrationInfoCheckbox30" value="1"> Office of Refugee Resettlement (ORR) eligibility letter (if under 18)
+					</td>
+				</tr>
+				<tr>
+					<td>
+						 <input type="checkbox" name="otherImmigrationInfoCheckbox40" value="1"> Cuban/Haitian Entrant
+					</td>
+				</tr>
+				<tr>
+					<td>
+						 <input type="checkbox" name="otherImmigrationInfoCheckbox50" value="1"> Document indicating withholding of removal
+					</td>
+				</tr>
+				<tr>
+					<td>
+						 <input type="checkbox" name="otherImmigrationInfoCheckbox60" value="1"> Resident of American Samoa
+					</td>
+				</tr>
+				<tr>
+					<td>
+						 <input type="checkbox" name="otherImmigrationInfoCheckbox70" value="1"> Administrative order staying removal issued by the Department of Homeland Security (DHS)
+					</td>
+				</tr>
+				<tr>
+					<td>
+						 <input type="checkbox" name="otherImmigrationInfoCheckbox80" value="1"> None of these
+					</td>
+				</tr>
+			</table>
+			
+			<div class="give-margin-15-20">
+			<p>Has (Primary Applicant) lived in the U.S. since 1996? (optional)</p>
+				<input type="radio" name="immigrationInUSSince1996Yes0" id="immigrationInUSSince1996Yes0" value="1"/> Yes<br/>
+				<input type="radio" name="immigrationInUSSince1996No0" id="immigrationInUSSince1996No0" value="0"/> No
+			</div>
+		</div>
+
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>	
+	</div>
+</div>
+
+<div class="formbox" id="formbox11">
+	<div class="info-container">
+		
+		<div class="give-margin-15-20">
+			<h3>One Applicant/Married Household Tax Q's</h3>
+				<p>Does Primary Applicant plan to file a federal income tax return for 2015? You don't have to file taxes to apply for coverage.</p>
+				<input type="radio" name="fileTaxReturnYes0" onclick="ftrValue(this.value)" id="fileTaxReturnYes0" value="1"/> Yes<br/>
+				<input type="radio" name="sameNameImmigrationNo0" id="sameNameImmigrationNo0" value="0" onclick="ftrValue(this.value)"/> No
+		</div>
+		
+		<div class="give-margin-15-20" id="isMarriedDiv" style="display:none">
+			<p>Is Primary Applicant married?</p>
+				<input type="radio" name="isMarriedYes0" onclick="isMarriedValue(this.value)" id="isMarriedYes0" value="1"/> Yes<br/>
+				<input type="radio" name="isMarriedNo0" id="isMarriedNo0" value="0" onclick="isMarriedValue(this.value)"/> No
+		</div>
+
+		<div class="give-margin-15-20" id="fileJointTaxReturnDiv" style="display:none;">
+			<p>Does Primary Applicant plan to file a joint federal income tax return with his spouse for 2015?</p>
+				<input type="radio" name="fileJointTaxReturnYes0" onclick="fileJointTaxReturnValue(this.value)" id="fileJointTaxReturnYes0" value="1"/> Yes<br/>
+				<input type="radio" name="fileJointTaxReturnNo0" id="fileJointTaxReturnNo0" value="0" onclick="fileJointTaxReturnValue(this.value)"/> No
+		</div>
+
+		
+		<table class="PAspouseName" id="taxStatusSpouse" style="display:none;">
+				<tr>
+					<td colspan="4">
+						Who is Primary Applicant's spouse? 
+					</td>
+				<tr>
+					<td>
+						<input type="hidden" name="applicant_id" id="applicant_id" value="1" />
+						<span class="table-headers">First Name</span><br/>	
+						<input type="text" name="taxStatusSpouseFirstName0_0" id="taxStatusSpouseFirstName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Middle Name</span><br/>	
+						<input type="text" name="taxStatusSpouseLastName0_0" id="taxStatusSpouseLastName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Last Name</span><br/>
+						<input type="text" name="taxStatusSpouseSuffix0_0" id="taxStatusSpouseSuffix0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Suffix</span><br/>
+						<input type="text" name="taxStatusSpouseSuffix0_0" id="taxStatusSpouseSuffix0_0" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="table-headers">Date of Birth</span><br/>
+						<input type="text" name="taxStatusSpouseDOB0_0" id="taxStatusSpouseDOB0_0" />
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+		</table>
+		
+		<table class="PAdependentsName" id="PAdependentsName" style="display:none;">
+				<tr>
+					<td colspan="4">
+						Who are Primary Applicant and Primary Applicant's spouse's dependents?  
+					</td>
+				<tr>
+				<tr>
+					<td colspan="4">
+						<input type="checkbox" name="taxStatusJointDependentSomeoneElseButton0" id="taxStatusJointDependentSomeoneElseButton0" value="1"/> Someone Else 
+					</td>
+				<tr>
+					<td>
+						<input type="hidden" name="applicant_id" id="applicant_id" value="1" />
+						<span class="table-headers">First Name</span><br/>	
+						<input type="text" name="taxStatusJointDependentFirstName0_0" id="taxStatusJointDependentFirstName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Middle Name</span><br/>	
+						<input type="text" name="taxStatusJointDependentMiddleName0_0" id="taxStatusJointDependentMiddleName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Last Name</span><br/>
+						<input type="text" name="taxStatusJointDependentLastName0_0" id="taxStatusJointDependentLastName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Suffix</span><br/>
+						<input type="text" name="taxStatusJointDependentSuffix0_0" id="taxStatusJointDependentSuffix0_0" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="table-headers">Date of Birth</span><br/>
+						<input type="text" name="taxStatusJointDependentDOB0_0" id="taxStatusJointDependentDOB0_0" />
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+		</table>
+
+		<div class="give-margin-15-20" id="claimJointDependentsDiv">
+			<p>Will Primary Applicant and Primary Applicant's spouse claim any dependents on their joint federal income tax return for 2015?</p>
+				<input type="radio" name="claimJointDependentsYes0" id="claimJointDependentsYes0" value="1"/> Yes<br/>
+				<input type="radio" name="claimJointDependentsNo0" id="claimJointDependentsNo0" value="0" /> No
+		</div>
+			
+		<div class="give-margin-10-20">
+			<button type="button" id="taxStatusJointDependentAddButton0" >Add a Dependent +</button>
+		</div>
+
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>	
+	</div>
+</div>
+
+
+<div class="formbox" id="formbox12">
+	<div class="info-container">
+		
+		<div class="give-margin-15-20">
+			<h3>One Applicant/unmarried Household Tax Q's</h3>
+				<p>Does Primary Applicant plan to file a federal income tax return for 2015? You don't have to file taxes to apply for coverage.</p>
+				<input type="radio" name="fileTaxReturnYes0Unmarried" id="fileTaxReturnYes0Unmarried" value="1"/> Yes<br/>
+				<input type="radio" name="sameNameImmigrationNo0Unmarried" id="sameNameImmigrationNo0Unmarried" value="0" /> No
+		</div>
+		
+		<div class="give-margin-15-20" id="isMarriedDivUnmarried">
+			<p>Is Primary Applicant married?</p>
+				<input type="radio" name="isMarriedYes0Unmarried" onclick="isMarriedValueUnmarried(this.value)" id="isMarriedYes0Unmarried" value="1"/> Yes<br/>
+				<input type="radio" name="isMarriedNo0Unmarried" id="isMarriedNo0Unmarried" value="0" onclick="isMarriedValueUnmarried(this.value)"/> No
+		</div>
+
+		<div class="give-margin-15-20" id="willClaimSeparateDependentsDiv" style="display:none">
+			<p>Will Primary Applicant claim any dependents on their joint federal income tax return for 2015?</p>
+				<input type="radio" name="willClaimSeparateDependentsYes0" id="willClaimSeparateDependentsYes0" value="1" onclick="showEitherOneOfBelow(this.value)"/> Yes<br/>
+				<input type="radio" name="willClaimSeparateDependentsNo0" id="willClaimSeparateDependentsNo0" value="0" onclick="showEitherOneOfBelow(this.value)" /> No
+		</div>
+
+		<table class="PAdependentsNameUnmarried" id="PAdependentsNameUnmarried" style="display:none;">
+				<tr>
+					<td colspan="4">
+						Who are Primary Applicant dependents?  
+					</td>
+				<tr>
+				<tr>
+					<td colspan="4">
+						<input type="checkbox" name="taxStatusSeparateDependentSomeoneElseButton0" id="taxStatusSeparateDependentSomeoneElseButton0" value="1"/> Someone Else 
+					</td>
+				<tr>
+					<td>
+						<input type="hidden" name="applicant_id" id="applicant_id" value="1" />
+						<span class="table-headers">First Name</span><br/>	
+						<input type="text" name="taxStatusSeparateDependentFirstName0_0" id="taxStatusSeparateDependentFirstName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Middle Name</span><br/>	
+						<input type="text" name="taxStatusSeparateDependentMiddleName0_0" id="taxStatusSeparateDependentMiddleName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Last Name</span><br/>
+						<input type="text" name="taxStatusSeparateDependentLastName0_0" id="taxStatusSeparateDependentLastName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Suffix</span><br/>
+						<input type="text" name="taxStatusSeparateDependentSuffix0_0" id="taxStatusSeparateDependentSuffix0_0" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="table-headers">Date of Birth</span><br/>
+						<input type="text" name="taxStatusSeparateDependentDOB0_0" id="taxStatusSeparateDependentDOB0_0" />
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+		</table>	
+
+		
+		<div class="give-margin-10-20">
+			<button type="button" id="taxStatusJointDependentAddButton0" >Add a Dependent +</button>
+		</div>
+		
+		<div class="give-margin-15-20" id="willBeClaimedAsDependentDiv1" style="display:none;">
+			<p>Will Primary Applicant be claimed as a dependent on someone else's tax return for 2015?</p>
+				<input type="radio" name="willBeClaimedAsDependentYes0" onclick="willBeClaimedAsDependent(this.value)" id="willBeClaimedAsDependentYes0" value="1"/> Yes<br/>
+				<input type="radio" name="willBeClaimedAsDependentNo0" id="willBeClaimedAsDependentNo0" value="0" onclick="willBeClaimedAsDependent(this.value)"/> No
+		</div>
+		
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>	
+	</div>
+</div>
+
+<div class="formbox" id="formbox13">
+	<div class="info-container">
+		
+		<div class="give-margin-15-20">
+			<h3>Multiple Applicants/Married HH Tax Q's</h3>
+				<p>Does Primary Applicant plan to file a federal income tax return for 2015? You don't have to file taxes to apply for coverage.</p>
+				<input type="radio" name="fileTaxReturnYes0Married" id="fileTaxReturnYes0Married" value="1" onclick="fileJointTaxReturnMarriedDiv(this.value)"/> Yes<br/>
+				<input type="radio" name="sameNameImmigrationNo0Married" id="sameNameImmigrationNo0Married" value="0" onclick="fileJointTaxReturnMarriedDiv(this.value)" /> No
+		</div>
+
+		<div class="give-margin-15-20" id="fileJointTaxReturnMarriedDiv"  style="display:none;">
+			<p>Does (Primary Applicant) plan to file a joint federal income tax return with his spouse for 2015?</p>
+				<input type="radio" name="fileJointTaxReturnYes0" id="fileJointTaxReturnYes0" value="1"/> Yes<br/>
+				<input type="radio" name="fileJointTaxReturnNo0" id="fileJointTaxReturnNo0" value="0" /> No
+		</div>
+				
+		<div class="give-margin-15-20" id="liveWithSpouseDiv">
+			<p>Does Primary Applicant live with his spouse?</p>
+				<input type="radio" name="liveWithSpouseYes0" onclick="isMarriedValueUnmarried(this.value)" id="isMarriedYes0Unmarried" value="1"/> Yes<br/>
+				<input type="radio" name="liveWithSpouseYes0" id="isMarriedNo0Unmarried" value="0" onclick="isMarriedValueUnmarried(this.value)"/> No
+		</div>
+		
+		<div class="give-margin-15-20" id="claimJointDependentsDiv2">
+			<p>Will (Primary Applicant) and (Primary Applicant's) spouse claim any dependents on their joint federal income tax return for 2015?</p>
+				<input type="radio" name="claimJointDependentsYes0 " id="claimJointDependentsYes0 " value="1"/> Yes<br/>
+				<input type="radio" name="claimJointDependentsNo0" id="claimJointDependentsNo0" value="0"/> No
+		</div>
+
+		<div class="give-margin-15-20" id="willBeClaimedAsDependentDiv2">
+			<p>Will (Primary Applicant) be claimed as a dependent on someone else's tax return for 2015? </p>
+				<input type="radio" name="willBeClaimedAsDependentYes0" id="willBeClaimedAsDependentYes0" value="1"/> Yes<br/>
+				<input type="radio" name="willBeClaimedAsDependentNo0" id="willBeClaimedAsDependentNo0" value="0"/> No
+		</div>
+		
+		<div class="give-margin-15-20" id="taxStatusJointDependentPersonSelectionDiv">
+			<p>Who are (Primary Applicant's) and (Primary Applicant's) spouse's dependents? </p>
+				<input type="checkbox" name="taxStatusJointDependentPersonSelection0_0" id="taxStatusJointDependentPersonSelection0_0" value="1"/> Name of First Dependent entered<br/>
+				<input type="checkbox" name="taxStatusJointDependentPersonSelection0_1" id="taxStatusJointDependentPersonSelection0_1" value="1"/> Name of Second Dependent entered<br/>
+				<input type="checkbox" name="taxStatusJointDependentPersonSelection0_2" id="taxStatusJointDependentPersonSelection0_2" value="1"/> Name of Third Dependent entered<br/>
+				<input type="checkbox" name="taxStatusJointDependentPersonSelection0_3" id="taxStatusJointDependentPersonSelection0_3" value="1"/> Name of Fourth Dependent entered<br/>
+				<input type="checkbox" name="taxStatusJointDependentPersonSelection0_4" id="taxStatusJointDependentPersonSelection0_4" value="1"/> Name of Fifth Dependent entered<br/>
+				<input type="checkbox" name="taxStatusJointDependentPersonSelection0_5" id="taxStatusJointDependentPersonSelection0_5" value="1"/> Name of Sixth Dependent entered<br/>
+				<input type="checkbox" name="taxStatusJointDependentSomeoneElseButton0" id="taxStatusJointDependentSomeoneElseButton0" value="1"/> Someone Else
+		</div>		
+		
+		<table class="taxStatusJointDependentSomeoneElse" id="taxStatusJointDependentSomeoneElse" style="display:none;">
+				<tr>
+					<td>
+						<input type="hidden" name="applicant_id" id="applicant_id" value="1" />
+						<span class="table-headers">First Name</span><br/>	
+						<input type="text" name="taxStatusJointDependentFirstName0_0" id="taxStatusJointDependentFirstName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Middle Name</span><br/>	
+						<input type="text" name="taxStatusJointDependentMiddleName0_0" id="taxStatusJointDependentMiddleName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Last Name</span><br/>
+						<input type="text" name="taxStatusJointDependentLastName0_0" id="taxStatusJointDependentLastName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Suffix</span><br/>
+						<input type="text" name="taxStatusJointDependentSuffix0_0" id="taxStatusJointDependentSuffix0_0" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="table-headers">Date of Birth</span><br/>
+						<input type="text" name="taxStatusJointDependentDOB0_0" id="taxStatusJointDependentDOB0_0" />
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+		</table>	
+
+		
+		<div class="give-margin-15-20" id="liveWithChildren">
+			<p>Does (Primary Applicant) live with a son, daughter, stepson, or stepdaughter?</p>
+				<input type="radio" name="liveWithChildrenYes0" onclick="isMarriedValueUnmarried(this.value)" id="liveWithChildrenYes0" value="1"/> Yes<br/>
+				<input type="radio" name="liveWithChildrenNo0" id="liveWithChildrenNo0" value="0" onclick="isMarriedValueUnmarried(this.value)"/> No
+		</div>
+		
+		<div class="give-margin-15-20" id="taxStatusJointDependentPersonSelectionDiv">
+			<p>Who are the sons, daughters, stepsons, or stepdaughters living with (Primary Applicant)?Select only children or stepchildren who are under 21.</p>
+				<input type="checkbox" name="taxStatusLiveWithChildrenPersonSelection0_2" id="taxStatusLiveWithChildrenPersonSelection0_2" value="1"/> Name of First Dependent entered<br/>
+				<div class="taxStatusLiveWith0_2" id="taxStatusLiveWith0_2" style="display:none;clear:both;">
+					<input type="radio" name="taxStatusLiveWithChildrenChildRadio0_2" id="taxStatusLiveWithChildrenChildRadio0_2" value="1"/> Yes<br/>
+					<input type="radio" name="taxStatusLiveWithChildrenStepchildRadio0_2" id="taxStatusLiveWithChildrenStepchildRadio0_2" value="0"/> No
+				</div>
+
+				<input type="checkbox" name="taxStatusLiveWithChildrenPersonSelection0_3" id="taxStatusLiveWithChildrenPersonSelection0_3" value="1"/> Name of Second Dependent entered<br/>
+
+				<div class="taxStatusLiveWith0_3" id="taxStatusLiveWith0_3" style="display:none;clear:both;">
+					<input type="radio" name="taxStatusLiveWithChildrenChildRadio0_3" id="taxStatusLiveWithChildrenChildRadio0_3" value="1"/> Yes<br/>
+					<input type="radio" name="TaxStatusLiveWithChildrenStepchildRadio0_3" id="TaxStatusLiveWithChildrenStepchildRadio0_3" value="0"/> No
+				</div>		
+
+				<input type="checkbox" name="TaxStatusLiveWithChildrenPersonSelection0_4" id="TaxStatusLiveWithChildrenPersonSelection0_4" value="1"/> Name of Third Dependent entered<br/>
+
+				<div class="taxStatusLiveWith0_4" id="taxStatusLiveWith0_4" style="display:none;clear:both;">
+					<input type="radio" name="taxStatusLiveWithChildrenChildRadio0_4" id="taxStatusLiveWithChildrenChildRadio0_4" value="1"/> Yes<br/>
+					<input type="radio" name="TaxStatusLiveWithChildrenStepchildRadio0_4" id="TaxStatusLiveWithChildrenStepchildRadio0_4" value="0"/> No
+				</div>
+
+
+				<input type="checkbox" name="TaxStatusLiveWithChildrenPersonSelection0_5" id="TaxStatusLiveWithChildrenPersonSelection0_5" value="1"/> Name of Fourth Dependent entered<br/>
+				
+				<div class="taxStatusLiveWith0_5" id="taxStatusLiveWith0_5" style="display:none;clear:both;">
+					<input type="radio" name="taxStatusLiveWithChildrenChildRadio0_5" id="taxStatusLiveWithChildrenChildRadio0_5" value="1"/> Yes<br/>
+					<input type="radio" name="TaxStatusLiveWithChildrenStepchildRadio0_5" id="TaxStatusLiveWithChildrenStepchildRadio0_5" value="0"/> No
+				</div>
+				
+				<input type="checkbox" name="TaxStatusLiveWithChildrenPersonSelection0_6" id="TaxStatusLiveWithChildrenPersonSelection0_6" value="1"/> Name of Fifth Dependent entered<br/>
+				<div class="taxStatusLiveWith0_6" id="taxStatusLiveWith0_6" style="display:none;clear:both;">
+					<input type="radio" name="taxStatusLiveWithChildrenChildRadio0_6" id="taxStatusLiveWithChildrenChildRadio0_6" value="1"/> Yes<br/>
+					<input type="radio" name="TaxStatusLiveWithChildrenStepchildRadio0_6" id="TaxStatusLiveWithChildrenStepchildRadio0_6" value="0"/> No
+				</div>
+
+				<input type="checkbox" name="TaxStatusLiveWithChildrenPersonSelection0_7" id="taxStatusJointDependentPersonSelection0_7" value="1"/> Name of Sixth Dependent entered<br/>
+
+				<div class="taxStatusLiveWith0_7" id="taxStatusLiveWith0_7" style="display:none;clear:both;">
+					<input type="radio" name="taxStatusLiveWithChildrenChildRadio0_7" id="taxStatusLiveWithChildrenChildRadio0_7" value="1"/> Yes<br/>
+					<input type="radio" name="TaxStatusLiveWithChildrenStepchildRadio0_7" id="TaxStatusLiveWithChildrenStepchildRadio0_7" value="0"/> No
+				</div>		
+
+				<input type="checkbox" name="taxStatusLiveWithChildrenSomeoneElseButton0" id="taxStatusLiveWithChildrenSomeoneElseButton0" value="1"/> Someone Else
+		</div>		
+		
+		<table class="taxStatusLiveWithChildrenSomeoneElse" id="taxStatusLiveWithChildrenSomeoneElse" style="display:none;">
+				<tr>
+					<td>
+						<input type="hidden" name="applicant_id" id="applicant_id" value="1" />
+						<span class="table-headers">First Name</span><br/>	
+						<input type="text" name="taxStatusLiveWithChildrenFirstName0_0" id="taxStatusLiveWithChildrenFirstName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Middle Name</span><br/>	
+						<input type="text" name="taxStatusLiveWithChildrenMiddleName0_0" id="taxStatusLiveWithChildrenMiddleName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Last Name</span><br/>
+						<input type="text" name="taxStatusLiveWithChildrenLastName0_0" id="taxStatusLiveWithChildrenLastName0_0" />
+					</td>
+					<td>
+						<span class="table-headers">Suffix</span><br/>
+						<input type="text" name="taxStatusLiveWithChildrenSuffix0_0" id="taxStatusLiveWithChildrenSuffix0_0" />
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<span class="table-headers">Date of Birth</span><br/>
+						<input type="text" name="taxStatusLiveWithChildrenDOB0_0" id="taxStatusLiveWithChildrenDOB0_0" />
+					</td>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tr>
+		</table>
+
+	
+		<div class="give-margin-15-20">
+			<input type ="button" value = "Save and Continue" class = "btn-save-test"  id ="btn-save-test" onclick = "showApplicantinfodiv();" />
+		</div>	
+	</div>
+</div>
+
+
+@stop
+
+@section('js')
+<script type="text/javascript" src="js/applicant.js"></script>
+@endsection

@@ -1,0 +1,119 @@
+
+<!-----------------PLAN OVERVIEW SECTION----------- -->
+<?php if(!empty($plansArr)){  //for($i = 1; $i < 20; $i ++){ ?>
+
+<?php foreach($plansArr as $key => $val){ 
+// echo '<pre>';
+// print_r($plansArr);die;
+?>
+<div class="plansbox" style= "margin-top:3%;">
+<div class="planwrapper">
+
+<div class="plantitle" style="float: left; width: 565px; height: 60px; border-bottom-style: solid; border-width: 2px; border-color: #555555;">
+
+
+<div style="padding-left: 20px; color: blue; font-size: 20px; font-weight: bold;">{{$val['PlanMarketingName']}}<br></div>
+<div style="padding-left: 20px; color: red; font-size: 15px; font-weight: bold;">{{$val['IssuerName']}} <br></div>
+
+
+</div>
+<div class="enrollbtn" style="float: right; width: 250px; height: 200px; margin-top: 10px; margin-right: 20px; border-left-style: solid; border-width: 2px; border-color: #555555;">
+<center>
+<a href="#"><img src="/img/Enrollbutton.png"></a>
+<br>
+
+
+<b>Standard Premium</b> <br>
+<h3 class="blue">{{$val['s_premium']}}</h3> 
+
+<b>Tax Credit</b> <br>
+<h3 class="blue"><b style="color: black;">-</b>{{$val['s_credit']}}</h3> 
+
+<div class="ipay">
+<h3 class="black">I PAY</h3> <br>
+<h3 class="green">{{$val['s_premium'] - $val['s_credit']}}</h3>
+</div>
+</center>
+
+</div>
+
+
+
+<div class="planinfowrapper" style="float: left; width: 550px;height: 160px; ">
+<div class="planforwrappertwo">
+
+<div class="deductible" style="margin-top: 5px; float: left; width: 200px; height: 150px; border-right-style: solid; border-width: 2px; border-color: #555555;">
+<center>
+<h2 class="black">Deductible</h2> <br>
+<h3 class="blue"> {{$val['deductible']}} </h3> 
+<br>
+<h2 class="black">Max Out Of Pocket</h2> <br>
+<h3 class="blue">{{$val['maxoutpocket']}}</h3> 
+
+</center>
+
+
+</div>
+
+<div class="services" style="float: right; width: 350px; height: 150px;margin-top: 5px; font-size:  10px;">
+
+<div class="servicesleft" style="float: left; margin-left: 20px;">
+<h2 class="black">Services</h2> <br>
+Primary Care<br>
+Specialist<br>
+ER Visit<br>
+Hospital Stay<br>
+Genric Drug<br>
+Brand RX<br>
+Specialy RX<br>
+</div>
+
+<div class="servicesright" style="float: right;">
+<h2 class="black">You Pay</h2> <br>
+{{$val['primarycare']}}<br>
+{{$val['specilist']}}<br>
+{{$val['emergengy']}}<br>
+{{$val['hospital']}}<br>
+{{$val['generic']}}<br>
+No Charge After Deductible<br>
+{{$val['specialDrug']}}<br>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+<div class="clear"></div>
+
+
+<div class="planfooter" style="border-top-style: solid; border-width: 2px; border-color: #555555;">
+<center> 
+<a href="{{$val['PlanBrochureURL']}}" target="_blank"><b>Summary of benefits</b></a> &nbsp;&nbsp;&nbsp;
+<a href="{{$val['NetworkURL']}}" target="_blank"><b>Doctor List</b></a> &nbsp;&nbsp;&nbsp;
+<a href="{{$val['DrugFormularyURL']}}" target="_blank"><b>Drug List</b></a> &nbsp;&nbsp;&nbsp;
+</center>
+
+</div>
+    </div>
+<?php } //end for loop ?>
+</div>
+
+</div>
+<?php } $nav = '';?>
+<div  style="margin-top:3%;width: 850px;height: 50px;margin: 50px auto auto;background-color: #FAE8E0;border-style: solid;border-width: 5px;">
+<?php for($i = 1 ; $i <= $totalplans ; $i++) {
+          
+                $nav .= "<span style = 'border: none;background: #fff;text-align:left;font-size: 16px; padding:3px; color: #FEBE33;margin-left:2px;' onclick = 'showlist($i)'>&#91;$i&#93;</span>";
+			
+ } echo $nav ; ?>
+ 
+</div>

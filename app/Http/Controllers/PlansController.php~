@@ -1,0 +1,168 @@
+<?php namespace App\Http\Controllers;
+
+use App\Http\Requests;
+use App\Http\Controllers\Controller;
+use DB;
+use Log;
+use App\FederalPovertyLevel;
+use App\HealthPlan;
+use App\PremiumModifier;
+
+
+
+use Illuminate\Http\Request;
+
+class PlansController extends Controller {
+
+    
+    public function index(Request $request)
+    {
+         
+         $countyzip = DB::table('zipcounty')->where('zipcode', '=', $request)->first();
+         
+         
+  /*      if(!$countyzip->$request) {
+    		return redirect(route('home'));
+    	}
+*/   
+    	if(!$request->input('zip')) {
+    		return redirect(route('home'));
+    	}
+       	$result = DB::table('zipcodes')->where('ZipCode', $request->input('zip'))->first();
+
+       	/**
+       	* @todo Might want to present something else to the user if the zipcode is not supported.
+        */
+    	if(!$result) {
+    		Log::error('Failed to match zipcode: ' . $request->input('zip'));
+    		return redirect(route('home'));
+    	}
+
+        // Check to see if we have at least ONE plan to offer here
+		$plan = HealthPlan::where('State', $result->StateCode)->where('County', $result->County)->where('PremiumAdultIndividualAge21', '!=', 0)->first();
+        if(!$plan) {
+            Log::error('Failed to match a plan to zipcode: ' . $request->input('zip'));
+            return redirect(route('home'));
+        }
+
+    	$request->session()->put('zip', $result);
+
+        return view ('pages.plans', [
+        	'zipcode' => $request->input('zip')
+        	]);
+    }
+
+    public function calc(Request $request) {
+    	// Make sure we have zipcode data.
+    	if(!($zipcode = $request->session()->get('zip'))) {
+    		return response()->json(['error' => 'Your session has expired. Please try again.']);
+    	}
+    	// $zipcode contains ZipCode, City, MixedCity, StateCode and County
+    	$state = $zipcode->StateCode;
+    	$county = $zipcode->County;
+
+        //discover chip by state amount amount
+        $chip = DB::table('bystatefpl') -> where ('state' , $state)->pluck('chip');
+        
+        //discover chip by adult 138
+        $adult = DB::table('bystatefpl') -> where ('state' , $state)->pluck('adult');
+        
+
+    	// Get request data
+    	$household = $request->input('household');
+    	$myself = $request->input('myself');
+    	$family = $request->input('family', []);
+
+        // Check for valid data
+        if(!$household['income'] || !$household['size']) {
+            return response()->json(['error' => 'Invalid Income or Size Values']);
+        }
+
+        // Convert income to only number
+        $household['income'] = (float)preg_replace("/[^0-9]/", "", $household['income']);
+
+        if(!$myself['age']) {
+            return response()->json(['error' => 'Invalid Age Specified For Myself']);
+        }
+
+    	$fpl = FederalPovertyLevel::calc($household['size'], $household['income'] * 100);
+
+    	$members = [];
+    	if((int)$household['size'] >= 2 && $fpl < $chip){
+    		// Only add members who are ages > 18
+    		foreach($family as $member) {
+    			if((int)$member['age'] > 18) {
+    				$members[] = $member;
+    			}
+    		}
+    	} else {
+    		foreach($family as $member) {
+                if((int)$member['age']) {
+    			 $members[] = $member;
+                }
+    		}
+    	}
+
+        
+        
+    	$members[] = $myself;
+
+        $premiumTotal = 0;
+    	// Now calculate the monthly premiums for applicable members.
+
+        // Get the second cheapest silver plan for this person.
+        // Note, we get the cheapest plan, based on individual age of 21.  Then use the premium modifier.
+        $plan = HealthPlan::where('State', $state)->where('County', $county)->where('MetalLevel', 'Silver')->where('PremiumAdultIndividualAge21', '!=', 0)->orderBy('PremiumAdultIndividualAge21', 'asc')->skip(1)->first();
+
+        if(!$plan) {
+            $response = ['error' => 'No plans available for that location'];
+            return response()->json($response);
+        }
+
+        foreach($members as &$member) {
+            $member['modifier'] = PremiumModifier::calc($member['age']);
+            $member['premium'] = round($member['modifier'] * $plan->PremiumAdultIndividualAge21, 3);
+            $premiumTotal = $premiumTotal + $member['premium'];
+        }
+
+
+        // Now calculate the Applicable Percentage
+        if($fpl < 133) {
+            $applicablePercentage = 2;
+        } else if($fpl < 150) {
+            $applicablePercentage = round( ((($fpl - 133) / (150-133)) * (4 - 3)) + 3 , 3 );
+        } else if($fpl < 200) {
+            $applicablePercentage = round( ((($fpl - 150) / (200-150)) * (6.3 - 4)) + 4 , 3 );
+        } else if($fpl < 250) {
+            $applicablePercentage = round( ((($fpl - 200) / (250-200)) * (8.05 - 6.3)) + 6.3 , 3 );
+        } else if($fpl < 300) {
+            $applicablePercentage = round( ((($fpl - 250) / (300-250)) * (9.5 - 8.05)) + 8.05 , 3 );
+        } else if($fpl < 400) {
+            $applicablePercentage = 9.5;
+        } else {
+            $applicablePercentage = 0; 
+        }
+
+
+        $credit = round($premiumTotal - ( ($household['income'] * ($applicablePercentage / 100)) / 12) , 0);
+
+        if($fpl > 400 || $fpl < $adult || $credit < 0) {
+            $credit = 0;
+        }
+
+        // Get the plans
+
+    	$response = [
+    		'state' => $state,
+    		'county' => $county,
+            'ap' => $applicablePercentage,
+            'fpl' => $fpl,
+            'Chip' => $chip,
+            'Adult' => $adult,
+            'credit' => $credit
+    	];
+
+
+    	return response()->json($response);
+    }
+}

@@ -1,0 +1,14 @@
+<html>
+<head>
+<meta http-equiv="content-type" content="application/x-www-form-urlencoded">
+</head>
+<body>
+<form method="POST " action=“<FFM endpoint URL>">
+<br>
+<b>Posting To Broker Service
+<br>
+<input type=“hidden” name="SAMLResponse " value=“<base64 encoded value of the SAML assertion>”
+<input type="submit" value="Submit" />
+</body>
+</html>
+</form>

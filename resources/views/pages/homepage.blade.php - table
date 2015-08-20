@@ -1,0 +1,214 @@
+@extends('home')
+<meta name="_token" content="{{ csrf_token() }}"/>
+@section('content')
+<center>
+
+<form action="{{ route('plans') }}" method="get"  onsubmit="get_counties(); return false;">
+<div class="enterzip"/>
+
+<div class="enterzipwrapper"/>
+<div class="zipleft"/>
+GOT 2 MIN? <br /> GET ENROLLED!
+<br />
+<div class="textfield"/>
+Please Enter <br /> Your Zipcode: <input size="12" class="round" type="text" id="zip_input" name="zip"><br>
+
+</div>
+</div>
+
+<!--<div class="zipcenter"/>-->
+<img src="{{ URL::asset('img/florida.png') }}" style="width: 500px;"/>
+
+
+<!- for adding different county's->
+	 
+			
+		<table class="countytable" id="county_div" style="display:none; border:0.3em solid; padding:20px;  border-color: grey;border-radius: 25px;  z-index: 100; position:fixed; top:150px; width:62%; border-collapse: separate; height:500px; overflow:scroll;">
+			<tr>
+				<td style="text-align:right; font-size:200%; font-weight:600;">Close(X)</td>
+			<tr>	
+			<tr>
+				<td style="padding:2em;">
+				<div class="" style="margin-top:10px;">
+
+							<!-fake countys->
+
+								 <div class="countypick">
+								  COUNTY One
+										</div>
+							  
+							  <div class="countypick">
+								  COUNTY Two
+										</div>
+							  
+							  <div class="countypick">
+								  COUNTY Three
+										</div>
+							  
+								<div class="countypick">
+								  COUNTY Four
+										</div>
+								  
+									<div class="countypick">
+								  COUNTY Five
+										</div>
+
+									<div class="countypick">
+								  COUNTY Six
+										</div>
+
+								<div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div><div class="countypick">
+								  COUNTY Seven
+								</div>
+							
+				</div>
+			</td>
+		</tr>		
+	</table>
+
+<! end of fake countys ->
+
+</form>
+
+</center>
+
+@stop
+
+<script>
+
+function get_counties(){
+		var zip	=	$('#zip_input').val();
+		var get_url	=	'{{ route('plans') }}?json_zip='+zip;
+		$.getJSON(get_url, function(obj) {
+			if(obj['cnt'] == 0){
+				alert('No records found for you input: '+zip);
+			}
+		  var html_county	=	'';
+		  for(var key in obj['result']) {
+			// alert('key: ' + key + '\n' + 'value: ' + obj['result'][key]['zipcode']);
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="/plans?zip='+obj['result'][key]['zipcode']+'&county='+obj['result'][key]['countyname']+'"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+			html_county	+=	'<a href="#" onclick="check_data('+obj['result'][key]['zipcode']+','+obj['result'][key]['countyname']+');"><div class="countypick">'+obj['result'][key]['countyname']+'</div></a>';
+		}
+		if(html_county != ''){
+			//$('#county_div').html('<table><tr><td><div class="countycontainer" style="margin-top:10px !important;">'+html_county+'</div></td><tr></table>');
+			$('#county_div').show();
+		}
+		  
+		});
+}
+
+function hide_p(){
+	$('#county_div').hide();
+}
+
+function check_data(county,county_name){
+alert(county+'  '+county_name);
+		// var zip	=	$('#zip_input').val();
+		// var get_url	=	'{{ route('plans') }}?zip='+zip+'&county_code='+county;
+		// $.getJSON(get_url, function(obj) {
+			// if(obj['cnt'] == 0){
+					// alert('No records found for you input zip: '+zip+' & county: '+county_name);
+			// }else{
+				// window.location.href ='/plans?zip='+zip+'&county='+county;
+			// }
+
+		// }
+}
+</script>
