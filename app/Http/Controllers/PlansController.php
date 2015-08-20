@@ -567,7 +567,9 @@ class PlansController extends Controller {
 
         // Get the plans
 
-    	$response = [
+    	     // Get the plans
+		if(!empty($membersNotValid)){
+			$response = [
     		'state' => $state,
     		'county' => $county,
             'ap' => $applicablePercentage,
@@ -577,7 +579,21 @@ class PlansController extends Controller {
             'Adult' => $adult,
             'credit' => $credit
     	];
-
+			
+			
+		}else{
+				$response = [
+    		'state' => $state,
+    		'county' => $county,
+            'ap' => $applicablePercentage,
+            'fpl' => $fpl,
+			'Chip' => $chip,
+            'Adult' => $adult,
+            'credit' => $credit
+    	];
+			
+			
+		}
 
     	return response()->json($response);
    // }
