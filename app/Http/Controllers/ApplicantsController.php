@@ -14,7 +14,7 @@ use Illuminate\Http\Request;
 class ApplicantsController extends Controller {
 
 	/**
-	* @todo Might want to present something else to the user if the zipcode is not supported.
+	* @todo   Might want to present something else to the user if the zipcode is not supported.
 	*/
     
     public function index(Request $request)
