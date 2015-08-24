@@ -267,7 +267,7 @@ $(document).on('change keyup', '#plan-meta input', function() {
         $('#credit-result').text(accounting.formatMoney(result.credit, '$', 0));
         $('#credit_value').val(accounting.formatMoney(result.credit, '$', 0));
         $('#fpl').val(result.fpl);
-        $('#Chip').val(result.chip);
+        $('#Chip').val(result.Chip);
         $('#Adult').val(result.adult);
         $('#county').val(result.county);
         $('#state').val(result.state);
@@ -335,7 +335,7 @@ function reloadjson(){
         $('#credit-result').text(accounting.formatMoney(result.credit, '$', 0));
         $('#credit_value').val(accounting.formatMoney(result.credit, '$', 0));
         $('#fpl').val(result.fpl);
-        $('#Chip').val(result.chip);
+        $('#Chip').val(result.Chip);
         $('#Adult').val(result.adult);
         $('#county').val(result.county);
         $('#state').val(result.state);
@@ -422,9 +422,17 @@ $('#family-members .spouse-member').each(function() {
 /* function to show applicant form 
 */
 function showApplicantForm(id,spremim){
-	var queryString="plan_id="+id+"&premium_cost="+spremim;
-
-		window.location.href="/applicants/?"+queryString
+	//var queryString="plan_id="+id+"&premium_cost="+spremim;
+			var chip 	=   $('#Chip').val() ;
+			
+			var fpl 	=   $('#fpl').val() ;
+			var county  =   $('#county').val() ;
+			var zip		= $('#myself-zipcode').val();
+			
+	var queryString="plan_id="+id+"&premium_cost="+spremim+"&chip="+chip+"&fpl="+fpl+"&county="+county+"&zip="+zip;
+	
+		
+		window.location.href="/applicants/?"+queryString;
 	
 	
 }

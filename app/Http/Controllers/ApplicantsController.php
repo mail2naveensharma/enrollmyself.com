@@ -22,6 +22,10 @@ class ApplicantsController extends Controller {
 		$plan_id  = $request->input('plan_id');
 	
 		$premium_cost  = $request->input('premium_cost');
+		$chip  = $request->input('chip');
+		$county  = $request->input('county');
+		$zip  = $request->input('zip');
+		$fpl  = $request->input('fpl');
         $cookie_name = 	'applicant_cookie' ;
 	
 		$applicant_id = '';
@@ -57,7 +61,7 @@ class ApplicantsController extends Controller {
 					
 				} 
 	
-return view ('pages.applicants', ['applicant_id' => $applicant_id, 'premium_cost'=>$premium_cost , 'step_id'=>$step_id ,'health_coverage'=>$healthCoverageYes,'plan_id'=>$plan_id]);
+return view ('pages.applicants', ['applicant_id' => $applicant_id, 'fpl'=>$fpl , 'chip'=>$chip , 'zip'=>$zip , 'county'=>$county , 'premium_cost'=>$premium_cost , 'step_id'=>$step_id ,'health_coverage'=>$healthCoverageYes,'plan_id'=>$plan_id]);
     	
     }
 
@@ -125,7 +129,14 @@ if(isset($_POST['premium_cost'])){
 $premium_cost         = $_POST['premium_cost'];
 
 }
+if(isset($_POST['zip'])){
+$zip         = $_POST['zip'];
 
+}
+if(isset($_POST['county'])){
+$county         = $_POST['county'];
+
+}
 // print_r($applicant_id);
 // print_r($step_id);
 // print_r($applicant_type_id);die;
@@ -234,6 +245,8 @@ if($step_id == 2 or $step_id == 6){
 				}
 				$tempArr['PlanIDstandardcomponent'] = $PlanIDstandardcomponent  ;
 				$tempArr['premium_cost'] = $premium_cost  ;
+				$tempArr['zip'] = $zip  ;
+				$tempArr['county'] = $county  ;
 				$id =  DB::table('applicant')->insertGetId($tempArr);
 				
 				$cookieid	=	$_SERVER['HTTP_USER_AGENT'].'_'.$id;

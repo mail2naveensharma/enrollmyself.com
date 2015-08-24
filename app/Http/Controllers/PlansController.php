@@ -55,9 +55,11 @@ class PlansController extends Controller {
 		}
         // Check to see if we have at least ONE plan to offer here
 
-		$plan = HealthPlan::where('State', $result->StateCode)->where('County', $result->County)->where('PremiumAdultIndividualAge21', '!=', 0)->get();
+		//$plan = HealthPlan::where('State', $result->StateCode)->where('County', $result->County)->where('PremiumAdultIndividualAge21', '!=', 0)->get();
+		$plan = HealthPlan::where('State', $result->StateCode)->where('County', $result->County)->get();
 		$plan = $plan->toArray();
-
+// echo '<pre>';
+// print_r($plan);die;
 		$carrier = HealthPlan::	select('IssuerName')->where('State', $result->StateCode)->where('County', $result->County)->where('PremiumAdultIndividualAge21', '!=', 0)->groupBy('IssuerName')->get();
 		$carrierArr = $carrier->toArray();
 		if($request->input('page')){
@@ -78,6 +80,7 @@ class PlansController extends Controller {
         }
 
     	$request->session()->put('zip', $result);
+		
 		if(($request->input('county_code')))return response()->json(array('cnt'=>1));
 				// return view ('pages.plans', ['zipcode' => $request->input('zip'), 'plansArr'=>$plan]);
 				
@@ -145,7 +148,7 @@ class PlansController extends Controller {
 				$modifier_value_self	 = $modifier[$key]['modifier'];	
 				
 				$metal_condition = $metal == 0?"'!='":"'='";
-				$planq = HealthPlan::where('State', $result->StateCode)->where('County', $result->County)->where('PremiumAdultIndividualAge21', '!=', 0);
+				$planq = HealthPlan::where('State', $result->StateCode)->where('County', $result->County);
 				$planq->where('MetalLevel','!=', trim('Catastrophic'));
 				$planq->where('MetalLevel','like', '%'.trim($metal).'%');
 				$planq->where('PlanType','like', '%'.trim($network).'%');
@@ -155,6 +158,31 @@ class PlansController extends Controller {
 				
 				
 				$plan = $plan->toArray();
+				$planFloridaArr = array();
+				$planTempArr = array();
+				foreach($plan as $kplan=>$kval){
+					if(($kval['IssuerName'] == 'Florida Blue HMO (a BlueCross BlueShield FL company)') or  ($kval['IssuerName'] == 'Florida Blue (BlueCross BlueShield FL)')){
+							$planFloridaArr[] = $kval ; 
+							array_splice($kval, $kplan, 1);
+							//unset($kval[$kplan]);
+						
+					}else{
+						$planTempArr[] = $kval ;
+					}
+						
+				}
+			/* 	echo '<pre>';
+				echo '****************************************';
+				print_r($planTempArr);
+				echo '****************************************';
+				print_r($plan); */
+				$plan  = array_merge($planTempArr,$planFloridaArr);
+				
+			/* echo '****************************************';
+				
+				print_r($planFloridaArr);
+				echo '****************************************';
+				print_r($plan);die; */
 				foreach($plan as $key=>$val){
 				$total_child_pre = 0;
 				$spouse_price = 0;

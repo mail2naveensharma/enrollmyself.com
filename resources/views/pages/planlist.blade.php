@@ -6,12 +6,39 @@
 // echo '<pre>';
 // print_r($plansArr);die;
 ?>
+<?php if($val['IssuerName'] == 'Florida Blue (BlueCross BlueShield FL)' or $val['IssuerName'] == 'Florida Blue HMO (a BlueCross BlueShield FL company)'){?>
+
+<div class="plansbox" style= "margin-top:3%;">
+	<div class="planwrapper">
+		<div class="plantitle" style="float: left; width: 870px; height: 60px; border-bottom-style: solid; border-width: 2px; border-color: #555555;">
+			<div style="padding-left: 20px; color: blue; font-size: 20px; font-weight: bold;">{{$val['PlanMarketingName']}}<br></div>
+				<div style="padding-left: 20px; color: red; font-size: 15px; font-weight: bold;">{{$val['IssuerName']}} <br></div>
+			</div>
+<h5 style = "color:red">enrollmyself.com isn't able to display all required plan information about this Qualified Health Plan at this time. </br>To get more information about this Qualified Health Plan, visit the Health Insurance Marketplace website at HealthCare.gov.</h5>
+				
+
+		</div>
+
+
+
+		<div class="planinfowrapper" style="float: left; width: 550px;height: 160px; ">
+			<div class="planforwrappertwo">
+		
+			</div>
+			</div><div class="clear"></div>
+					
+
+			
+				
+				
+		
+		
+</div>
+<?php }else{ ?>
 <div class="plansbox" style= "margin-top:3%;">
 
 <div class="planwrapper">
-<?php if($val['IssuerName'] == 'Florida Blue (BlueCross BlueShield FL)' or $val['IssuerName'] == 'Florida Blue HMO (a BlueCross BlueShield FL company)'){?>
-<h3>enrollmyself.com isn't able to display all required plan information about this Qualified Health Plan at this time. To get more information about this Qualified Health Plan, visit the Health Insurance Marketplace website at HealthCare.gov.</h3>
-<?php }else{ ?>
+
 <div class="plantitle" style="float: left; width: 565px; height: 60px; border-bottom-style: solid; border-width: 2px; border-color: #555555;">
 
 
@@ -34,7 +61,10 @@
 
 <div class="ipay">
 <h3 class="black">I PAY</h3> <br>
-<?php $absvalue = $val['s_premium'] - $val['s_credit'] ;?>
+<?php $absvalue = $val['s_premium'] - $val['s_credit'] ;
+$absvalue = sprintf("%.2f", $absvalue);
+
+?>
 <h3 class="green">$<?php print_r($absvalue < 0 ? 0 : $absvalue); ?></h3>
 
 
@@ -96,7 +126,7 @@ No Charge After Deductible<br>
 
 </div>
 
-<?php } ?>
+
 
 </div>
 
@@ -113,10 +143,18 @@ No Charge After Deductible<br>
 </div>
     </div>
 <?php } //end for loop ?>
-</div>
 
-</div>
-<?php } $nav = '';?>
+<?php } ?>
+<?php } ?>
+
+
+
+
+
+
+
+
+<?php $nav = '';?>
 <div  style="margin-top:3%;width: 850px;height: 50px;margin: 50px auto auto;background-color: #FAE8E0;border-style: solid;border-width: 5px;">
 <?php for($i = 1 ; $i <= $totalplans ; $i++) {
           

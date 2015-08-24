@@ -9,8 +9,14 @@
 <input type="hidden" name="step_id" id="step_id" value="{{ $step_id }}" />
 <input type="hidden" name="applicant_id" id="applicant_id" value="{{ $applicant_id }}" />
 <input type="hidden" name="countperson1" id="countperson1"  value = "3" />
-<input type="hidden" name="PlanIDstandardcomponent" id="PlanIDstandardcomponent"  value = "{{ $plan_id }}" />
+<input type="text" name="PlanIDstandardcomponent" id="PlanIDstandardcomponent"  value = "{{ $plan_id }}" />
 <input type="hidden" name="premium_cost" id="premium_cost"  value = "{{ $premium_cost }}" />
+
+<input type="hidden" name="zip" id="zip"  value = "{{ $zip }}" />
+<input type="hidden" name="county" id="county"  value = "{{ $county }}" />
+<input type="hidden" name="chip" id="chip"  value = "{{ $chip }}" />
+<input type="hidden" name="fpl" id="fpl"  value = "{{ $fpl }}" />
+
 <input type="hidden" name="health_coverage" id="health_coverage" value="{{ $health_coverage }}" />
 <div class="formbox" id="formbox1" style ="display:none">
 	<div class="info-container">			
@@ -309,13 +315,13 @@
 <input type="hidden" name="applicant_type_id" id="applicant_type_id_2"  value = "0" />
 	<div class="info-container">
 		<table class="applyingForCoverage" id="applyingForCoverage">
-			<tr>
+			<tr id="form2_first" class = "form2_first">
 				
 				<td>
 					<span class="table-headers">Applying for Coverage?</span>
-					<select name="applyingCoverage" id="applyingCoveragehealth-0" onchange="hidefieldsOnNo(this.id)" >
+					<select name="applyingCoveragehealth" id="applyingCoveragehealth-0" onchange="hidefieldsOnNo(this.id)" >
 						<option value="">Select...</option>
-						<option value="1">Yes</option> 
+						<option value="1" selected >Yes</option> 
 						<option value="0">No</option>
 					</select>
 				</td>
@@ -345,7 +351,7 @@
 						  </select>
 					</td>
 				</tr>
-				<tr id="form2_first" class = "form2_first">
+				<tr id="form2_first" class = "form2_first ">
 					<td>
 						<span class="table-headers">Gender</span><br/>	
 						<select name="applicantGender" id="applicantGender-0" >
@@ -469,7 +475,7 @@
 		<tr id="baseIncomeRow-0" class = "income">
 			<td>
 				<span class="table-headers">$</span>
-				<input type="text" value="" name="amount" id = "amount-xyz" onblur = "showamtoption(this.id);">
+				<input type="text" value="" class = "number" name="amount" id = "amount-xyz" onblur = "showamtoption(this.id);">
 			</td>
 			<td>
 				<div id = "incometypediv-xyz" style = "display:none" >
@@ -531,15 +537,16 @@
 					</select>
 				</td>
 			</tr>
-			<tr>
+		<!--	<tr>
 				<td><p>
 					Which kind of insurance? 
 					</p>
 				</td>
-			</tr>
+			</tr>-->
 			<tr>
 				<td>
 				<div id="">
+				
 					<div id = "alreadyenroll-0"  class="hideOnApplyingCoverageNo-0">
 				
 					</div>
@@ -547,7 +554,7 @@
 					</div>
 				<table>
 						<tr class = "coverage">
-							<td>Does this person's employer offer health insurance?  </td>
+							<td>Does this "person's" employer "offer health" insurance?  </td>
 							<td>
 								<select name="employer_offers_insurance" id="employer_offers_insurance-0"  >
 									<option value="">Select...</option>
@@ -725,7 +732,87 @@
 	</div>
 </div>
 <!--********************************************* Registered native american **************************************/-->	
+<!--********************************************* Registered native american **************************************/-->	
+<!--********************************************* Spouse” from Relationship  **************************************/-->	
 
+<div id="applicant_age_filing_box" class = "container_box" style="display:none;">  </div>    <!-- OUR PopupBox DIV-->
+<div id="applicant_age_popup_box" class = "error_popup_box" style="display:none;">      <!-- OUR PopupBox DIV-->
+	<div id="error_popup_box2" class = "error_popup_box2"> 
+			<h4></h4>
+		<a href="#" id="native_popup_boxClose" class="container-close popupBoxClose" onclick = "applicant_age();">Close</a> 
+	</div>	<!-- OUR PopupBox DIV-->
+	<div id="dependent_info">      <!-- OUR PopupBox DIV-->
+		<div id ="confirm_and_sign">Confirm and Sign
+
+Some members of your housefold will probably not to eligible to purchase insurance from the federal Marketplace 
+
+If you have questions, please give us a call at (866) 927-9074.
+</div>
+<div  id = "errorshow" style = "display:none;color: #1B526D;background-color: #F9FDFF;border-color: #79C0DB;border-radius: 2px;padding: 15px 20px;position: relative;margin: -1px 0px 15px;">
+	
+	</div>
+	<div id = "showdiv" >
+		<table >
+			<tbody>
+				<thead>
+				<td>Name</td>
+				<td>Birthday</td>
+				<td>Reason</td>
+				
+				
+				</thead>
+				<tr >
+					<td>
+						<div id = "name"> </div>
+					</td>
+					<td>
+						<div id = "dob"> </div>
+					
+					</td>
+					<td>
+						<span class="table-headers">This person appears to be eligble for medicade and or/chip ,so does not qualify for subsidize insurance </span><br/>	
+					
+					</td>
+			
+				</tr>
+
+			</tbody>
+		</table>
+		<table class="contactName" id="contactName">
+			<tbody>
+				<thead>
+				<td>Agree ?</td>
+				<td>Statement</td>
+				
+				
+				
+				</thead>
+				<tr >
+					<td>
+						<input type="checkbox" name="confirm_Age_check" id="confirm_Age_check" value="1" /> 
+					</td>
+					
+					<td>
+						<span class="table-headers">I acknowledge that the above members of my household may not be enrolled and would i like to proceed  </span><br/>	
+					
+					</td>
+			
+				</tr>
+
+			</tbody>
+		</table>
+
+			<div class="give-margin-15-20">
+			<input type ="button" value = "Confirm" class = "btn-save-confirm"  id ="btn-save-confirm" onclick = "confirmAge();" />
+		</div>
+	</div>	
+	<div id ="confirm" style = "display:none">
+
+</div>	
+</div>	
+
+
+	</div>
 <input type="hidden" id="_token" value="{{ csrf_token() }}" />
 <input type="hidden" id="relationvalue"  name = "relationvalue" value="" />
 @stop
@@ -737,6 +824,35 @@
 <script type="text/javascript" src="js/applicant.js"></script>
 
 <script type="text/javascript">
+/*
+* Function to show relation modal
+*/
+
+
+
+
+
+
+
+
+
+function checkAge(id){
+	var s_idArray 	 =	id.split("-");
+		var s_id1			 =	s_idArray[1];
+	var dob = $('#addApplicantDateOfBirth-'+s_id1).val() ;
+	if(dob != ''){
+		dob = new Date(dob);
+		var today = new Date();
+		var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+
+		alert(age);
+		
+		
+	}
+	
+	//$('#age').html(age+' years old');			
+	
+}
 /*
 * Function to show relation modal
 */
@@ -858,6 +974,28 @@ function dependentfiling(){
 	
 	$("#dependent_filing_box").hide();
 	$("#dependent_filing_popup_box").hide();
+}
+
+ /*
+* Function to hide the married modal
+*/
+function applicant_age(){
+	
+	$("#applicant_age_filing_box").hide();
+	$("#applicant_age_popup_box").hide();
+}
+ 
+ /*
+* Function to hide the married modal
+*/
+function confirmAge(){
+
+	if ($('#confirm_Age_check').is(':checked')) {
+					
+	$("#applicant_age_filing_box").hide();
+	$("#applicant_age_popup_box").hide();
+	}
+	
 }
  
 /*
@@ -1037,6 +1175,8 @@ function cloneApplicant(){
 			data1.applicant_id = $('#applicant_id').val();
 			data1.PlanIDstandardcomponent = $('#PlanIDstandardcomponent').val();
 			data1.premium_cost = $('#premium_cost').val();
+			data1.zip = $('#zip').val();
+			data1.county = $('#county').val();
 	
 				$.post('/applicants/view', data1, function(result) {
 					var jsonAplicantArray = JSON.parse(result);
@@ -1074,6 +1214,7 @@ function cloneApplicant(){
 var relationval = 0 ;
 	 var numItems = $('.countformbox').length;
 	 
+
 	 //for relation checks 
 	for(var i = 2;i<=numItems + 1;i++){
 		
@@ -1095,8 +1236,49 @@ var relationval = 0 ;
 						$("#error_popup_box").fadeIn("slow");
 					}
 											
-				}
-				
+				}		
+					if($(this).attr('name') == 'addApplicantDateOfBirth'){
+					
+						var dob_id         =	$(this).attr('id');
+						
+						var s_idArray 	 =	dob_id.split("-");
+						var s_id1			 =	s_idArray[1];
+						
+						if(s_id1 != 0){
+							
+							var dob1 = $('#addApplicantDateOfBirth-'+s_id1).val() ;
+						
+							if(dob1 != ''){
+								
+								dob = new Date(dob1);
+								var today = new Date();
+								var age = Math.floor((today-dob) / (365.25 * 24 * 60 * 60 * 1000));
+								
+								var applyingForCoverage_app	= $('#applyingCoveragehealth-'+s_id1).val()	;	
+								
+								var fpl = $('#fpl').val() ;
+								var chip = $('#chip').val() ;
+								if(fpl < chip){
+									if((age <= 19) && (applyingForCoverage_app == 1)){
+											relationval = 1 ;
+										
+										
+										var f_name = $('#addApplicantFirstName-'+s_id1).val() ;
+										var l_name = $('#addApplicantLastName-'+s_id1).val() ;
+										$("#name").html(f_name+'-'+l_name);
+										$("#dob").html(dob1);
+										
+										$("#applicant_age_filing_box").show();
+										
+										$("#applicant_age_popup_box").fadeIn("slow");	
+										
+									}
+								}
+							}
+
+						}	
+					}			
+					
 			});
 			
 		});
@@ -1436,6 +1618,19 @@ function open_popup(){
 	$("#error_popup_box").fadeIn("slow");
 }
 
+$('input.number').keyup(function(event) {
+
+  // skip for arrow keys
+  if(event.which >= 37 && event.which <= 40) return;
+
+  // format number
+  $(this).val(function(index, value) {
+    return value
+    .replace(/\D/g, "")
+    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    ;
+  });
+});
 
 </script>
 
