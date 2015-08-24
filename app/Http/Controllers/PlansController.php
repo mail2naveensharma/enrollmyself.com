@@ -543,7 +543,7 @@ class PlansController extends Controller {
 
         // Get the second cheapest silver plan for this person.
         // Note, we get the cheapest plan, based on individual age of 21.  Then use the premium modifier.
-        $plan = HealthPlan::where('State', $state)->where('County', $county)->where('MetalLevel', 'Silver')->where('PremiumAdultIndividualAge21', '!=', 0)->orderBy('PremiumAdultIndividualAge21', 'asc')->skip(1)->first();
+        $plan = HealthPlan::where('State', $state)->where('County', $county)->where('MetalLevel', 'Silver')->orderBy('PremiumAdultIndividualAge21', 'asc')->skip(1)->first();
 
         if(!$plan) {
             $response = ['error' => 'No plans available for that location'];

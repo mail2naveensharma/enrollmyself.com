@@ -1,6 +1,8 @@
 @extends('home')
 
+
 @section('content')
+
 
 <div class="planbody"/>
      <div class="planbodywrapper"/>

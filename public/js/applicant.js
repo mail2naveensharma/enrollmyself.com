@@ -10,7 +10,7 @@ if(myage == ''){
 }
 /*
  * Show income type div w.r.t id ,
- * 
+ * Test
  */	
 function showamtoption(id){
 	var result = 	id.split("-"); 
